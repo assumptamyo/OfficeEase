@@ -1,0 +1,3 @@
+from .modeltranslation_compat import patch_multilingual_queryset_update
+
+patch_multilingual_queryset_update()
