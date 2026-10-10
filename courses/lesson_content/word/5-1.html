@@ -1,0 +1,90 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 5.1</span>
+    <p class="lesson-lead">Sending the same letter to two hundred people, each with their own name and address, should not mean typing two hundred letters. <strong>Mail merge</strong> combines one document with a list of data to produce a personalised copy for every person on the list.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>describe the three components of a mail merge;</li>
+      <li>connect a main document to a data source and insert merge fields;</li>
+      <li>preview, filter and complete a merge to documents, a printer or email;</li>
+      <li>use a rule to vary the text according to the data.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The three components</h3>
+    <dl class="lesson-terms">
+      <div><dt>Main document</dt><dd>The letter, email, label or certificate containing the text that is the same for everyone.</dd></div>
+      <div><dt>Data source</dt><dd>The list of recipients: usually an Excel worksheet, but also an Outlook contact list, an Access table or a list typed in Word. Each <strong>row</strong> is one person (a <em>record</em>) and each <strong>column</strong> is one piece of information (a <em>field</em>).</dd></div>
+      <div><dt>Merge fields</dt><dd>Placeholders in the main document, shown between chevrons such as «First_Name». During the merge each one is replaced by that person's value.</dd></div>
+    </dl>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>Prepare the Excel list carefully before you start. Put the column headings in row 1, use short names without spaces (First_Name, Company, City), leave no blank rows, and keep one kind of information per column.</aside>
+    <!--figure:merge-->
+  </section>
+
+  <section class="lesson-part">
+    <h3>The mail merge workflow</h3>
+    <p>All the commands are on the <strong>Mailings</strong> tab, arranged from left to right in the order you use them.</p>
+    <ol class="lesson-steps">
+      <li><strong>Choose the document type.</strong> <span class="lesson-path">Start Mail Merge</span> &gt; Letters, E-mail Messages, Envelopes, Labels or Directory.</li>
+      <li><strong>Connect the data.</strong> <span class="lesson-path">Select Recipients &gt; Use an Existing List</span>, then browse to the Excel file and choose the worksheet.</li>
+      <li><strong>Refine the list.</strong> <span class="lesson-path">Edit Recipient List</span> lets you untick individuals, sort the list, or filter it, for example to one city.</li>
+      <li><strong>Insert the fields.</strong> Click where each value belongs and choose it from <span class="lesson-path">Insert Merge Field</span>. Type spaces and punctuation between fields yourself.</li>
+      <li><strong>Preview.</strong> <span class="lesson-path">Preview Results</span> replaces the placeholders with real data. Use the arrows to step through the records and check the layout with long and short names.</li>
+      <li><strong>Finish.</strong> <span class="lesson-path">Finish &amp; Merge</span> and choose the output.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Choosing the output</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Finish &amp; Merge option</th><th>Result</th><th>Use it when</th></tr></thead>
+        <tbody>
+          <tr><td>Edit Individual Documents</td><td>A new document containing every personalised copy, one per page</td><td>You want to check, adjust or save the results as a PDF</td></tr>
+          <tr><td>Print Documents</td><td>The copies are sent directly to the printer</td><td>The preview is correct and paper copies are needed</td></tr>
+          <tr><td>Send Email Messages</td><td>One email per recipient, sent through Outlook</td><td>The list contains an email address column</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Important</strong>Emails sent by a merge leave immediately and cannot be recalled. Always merge to <em>Edit Individual Documents</em> first, or send a test to yourself, before emailing a real list.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Composite fields and rules</h3>
+    <p><strong>Address Block</strong> and <strong>Greeting Line</strong> assemble several fields into a correctly formatted address or salutation. If the result is wrong, use <span class="lesson-path">Match Fields</span> to tell Word which of your columns holds the surname, the city and so on.</p>
+    <p><strong>Rules</strong> make the text depend on the data. The most useful is <em>If…Then…Else</em>: for instance, if the <em>Status</em> field equals <em>Member</em>, insert "Your member discount is 20%"; otherwise insert "Join today to receive a discount".</p>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: event certificates</h4>
+    <ol class="lesson-steps">
+      <li>Open the certificate design and choose <span class="lesson-path">Start Mail Merge &gt; Letters</span>.</li>
+      <li>Connect it to <em>Attendees.xlsx</em> with <em>Use an Existing List</em>.</li>
+      <li>Click on the name line and insert the «First_Name» and «Last_Name» fields with a space between them; insert «Course» on the line below.</li>
+      <li>Preview the results and step through several records to check that long names fit.</li>
+      <li>Choose <span class="lesson-path">Finish &amp; Merge &gt; Edit Individual Documents</span>, then save the result as a PDF.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>A mail merge joins a main document to a data source by means of merge fields.</li>
+      <li>In the data source, rows are records and columns are fields.</li>
+      <li>The Mailings tab is laid out in the order of the workflow: start, select, insert, preview, finish.</li>
+      <li>Always preview, and merge to a document before printing or emailing.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>In an Excel recipient list, what does one row represent, and what does one column represent?</summary><p>A row is one record, that is one recipient. A column is one field, such as the first name or the city.</p></details>
+    <details><summary>Your merged letters show "Dear «First_Name»" instead of real names. Which step was missed?</summary><p>The merge was not completed. Use Preview Results to check the data, then Finish &amp; Merge to produce the personalised copies.</p></details>
+    <details><summary>Which Finish &amp; Merge option is safest for a first attempt, and why?</summary><p>Edit Individual Documents, because it produces a document you can inspect and correct before anything is printed or sent.</p></details>
+  </section>
+</article>

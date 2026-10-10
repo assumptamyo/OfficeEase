@@ -1,0 +1,92 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 5.1</span>
+    <p class="lesson-lead">Every slide you have made so far takes its fonts, colours and placeholder positions from somewhere. That source is the <strong>Slide Master</strong>. Learning to edit it is the difference between formatting forty slides one at a time and changing all forty with a single edit.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>describe the relationship between the parent master, the layouts and the slides;</li>
+      <li>make a change that affects every slide in a presentation;</li>
+      <li>set theme fonts, theme colours and footers in the master;</li>
+      <li>decide whether a change belongs on the master, a layout or a slide.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The three-level hierarchy</h3>
+    <p>Open the master with <span class="lesson-path">View &gt; Slide Master</span>. The thumbnail pane now shows the templates behind the slides, not the slides themselves.</p>
+    <dl class="lesson-terms">
+      <div><dt>Parent master</dt><dd>The <strong>top, larger thumbnail</strong>. It holds the settings shared by the whole presentation. Anything placed or changed here is inherited by every layout beneath it.</dd></div>
+      <div><dt>Layouts</dt><dd>The smaller thumbnails below, joined to the parent by a line. Each is one arrangement, such as Title Slide or Two Content. A layout inherits from the parent and may add or override details.</dd></div>
+      <div><dt>Slides</dt><dd>The actual slides in Normal view. Each one is based on a layout and inherits everything from it.</dd></div>
+    </dl>
+    <p>Inheritance flows downward only: parent master → layout → slide. A change made at a higher level reaches everything below it, unless the lower level has been formatted differently by hand.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Where to make a change</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>You want to change</th><th>Edit</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Every slide in the presentation</td><td>The parent master</td><td>The company logo, the title font, the bullet style</td></tr>
+          <tr><td>Every slide of one kind</td><td>That layout</td><td>The background of all section header slides</td></tr>
+          <tr><td>One slide only</td><td>The slide, in Normal view</td><td>The words and pictures of that slide</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>If a company logo must appear in exactly the same position on <strong>every</strong> slide, place it on the <strong>parent master</strong>. It then appears automatically on all layouts and all slides, and it cannot be moved or deleted by accident in Normal view.</p>
+    <aside class="lesson-note is-warn"><strong>Common mistake</strong>Selecting a layout instead of the parent master and wondering why the logo appears on only some slides. Scroll to the very top of the thumbnail pane and select the first, larger thumbnail.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>What to set on the parent master</h3>
+    <ul>
+      <li><strong>Theme fonts.</strong> <span class="lesson-path">Slide Master &gt; Fonts</span> sets the heading and body font pair for the whole presentation.</li>
+      <li><strong>Theme colours.</strong> <span class="lesson-path">Slide Master &gt; Colors</span> sets the palette. Create a custom set containing your organisation's brand colours.</li>
+      <li><strong>Text styles.</strong> Format the title placeholder and each of the five bullet levels: font size, colour, bullet character and spacing.</li>
+      <li><strong>Background.</strong> <span class="lesson-path">Background Styles &gt; Format Background</span> applies a colour, gradient or picture.</li>
+      <li><strong>Fixed elements.</strong> Logos, coloured bars and other objects that should appear everywhere.</li>
+      <li><strong>Footers.</strong> The date, footer text and slide number placeholders. Position and format them here, then switch them on with <span class="lesson-path">Insert &gt; Header &amp; Footer</span> in Normal view.</li>
+    </ul>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>The Title Slide layout often looks better without the logo and footer. Select that layout and tick <span class="lesson-path">Hide Background Graphics</span> to suppress the objects inherited from the parent.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Leaving the master</h3>
+    <p>Click <span class="lesson-path">Slide Master &gt; Close Master View</span> to return to your slides. If a slide does not show the changes, it has probably been formatted by hand and is overriding the master. Select it and choose <span class="lesson-path">Home &gt; Reset</span> to restore the inherited formatting.</p>
+    <p>A presentation may contain more than one slide master, which happens when slides are pasted in from another file with <em>Keep Source Formatting</em>. Several masters make a presentation inconsistent and hard to maintain; paste with <em>Use Destination Theme</em> to avoid them.</p>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: branding a presentation</h4>
+    <ol class="lesson-steps">
+      <li>Open <span class="lesson-path">View &gt; Slide Master</span> and select the parent master at the top.</li>
+      <li>Create custom theme colours and theme fonts matching the brand.</li>
+      <li>Insert the company logo in the top-right corner of the parent master.</li>
+      <li>Format the title placeholder as bold in the brand colour.</li>
+      <li>Select the Title Slide layout and tick <em>Hide Background Graphics</em>.</li>
+      <li>Close Master View and confirm that every slide has changed.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>The parent master controls all layouts; layouts control the slides based on them.</li>
+      <li>A logo that must appear on every slide belongs on the parent master.</li>
+      <li>Set fonts, colours, bullet styles and footers once in the master instead of on each slide.</li>
+      <li>Reset a slide to make it follow the master again.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>Where should a company logo be placed so that it appears in the same position on every slide?</summary><p>On the top parent slide in Slide Master view.</p></details>
+    <details><summary>You change the title font on the parent master, but one slide keeps its old font. Why, and what is the fix?</summary><p>That slide was formatted by hand and overrides the master. Select it and choose Home &gt; Reset.</p></details>
+    <details><summary>You want only the section header slides to have a dark background. Where do you make the change?</summary><p>On the Section Header layout in Slide Master view, so that it affects only slides using that layout.</p></details>
+  </section>
+</article>

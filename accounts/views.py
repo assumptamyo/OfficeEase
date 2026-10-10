@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout, get_user_model
-from .forms import RegisterForm, LoginForm
+from django.contrib.auth import authenticate, login, logout, get_user_model, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.utils.http import url_has_allowed_host_and_scheme
+from .forms import RegisterForm, LoginForm, ProfileForm
 from .models import Profile
 
 User = get_user_model()
@@ -12,7 +15,10 @@ def auth(request):
 
     The template uses `action=register` and `action=login` to distinguish forms.
     """
-    next_url = request.GET.get('next', '')
+    # the forms post `next` as a hidden field, links pass it in the query string
+    next_url = request.POST.get('next') or request.GET.get('next', '')
+    if not url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
+        next_url = ''
     # default forms
     register_form = RegisterForm()
     login_form = LoginForm()
@@ -51,12 +57,12 @@ def auth(request):
                 # Try authenticating by username first
                 user = authenticate(request, username=identifier, password=password)
                 if user is None:
-                    # try by email
-                    try:
-                        u = User.objects.get(email__iexact=identifier)
+                    # try by email; more than one account can share an email
+                    # (e.g. a superuser made with createsuperuser), so try each
+                    for u in User.objects.filter(email__iexact=identifier):
                         user = authenticate(request, username=u.username, password=password)
-                    except User.DoesNotExist:
-                        user = None
+                        if user is not None:
+                            break
 
                 if user is not None:
                     login(request, user)
@@ -89,3 +95,46 @@ def logout_view(request):
     # messages.info(request, 'You have been signed out.')
     return redirect('home')
 
+
+@login_required
+def account_settings(request):
+    user = request.user
+    profile, _ = Profile.objects.get_or_create(user=user)
+
+    profile_form = ProfileForm(user=user, initial={
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'email': user.email,
+        'bio': profile.bio,
+    })
+    password_form = PasswordChangeForm(user)
+
+    if request.method == 'POST':
+        if request.POST.get('action') == 'password':
+            password_form = PasswordChangeForm(user, request.POST)
+            if password_form.is_valid():
+                password_form.save()
+                # keep the user signed in after the password hash changes
+                update_session_auth_hash(request, password_form.user)
+                messages.success(request, 'Your password has been changed.')
+                return redirect('account_settings')
+        else:
+            profile_form = ProfileForm(request.POST, user=user)
+            if profile_form.is_valid():
+                data = profile_form.cleaned_data
+                # accounts made through the register form use the email as username
+                if user.username == user.email and not User.objects.filter(username=data['email']).exclude(pk=user.pk).exists():
+                    user.username = data['email']
+                user.first_name = data['first_name']
+                user.last_name = data['last_name']
+                user.email = data['email']
+                user.save()
+                profile.bio = data['bio']
+                profile.save()
+                messages.success(request, 'Your profile has been updated.')
+                return redirect('account_settings')
+
+    return render(request, 'accounts/settings.html', {
+        'profile_form': profile_form,
+        'password_form': password_form,
+    })

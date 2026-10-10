@@ -7,7 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 
 from .models import (
@@ -117,7 +119,15 @@ def structured_course(request, course_id):
         return all(status_map.get(step_id) == UserStepProgress.PASSED for step_id in required_step_ids)
 
     previous_completed = True
-    for entry in module_entries:
+    for number, entry in enumerate(module_entries, start=1):
+        required = [st for st in entry['steps'] if st.is_required]
+        passed = sum(1 for st in required if status_map.get(st.id) == UserStepProgress.PASSED)
+        entry['number'] = number
+        entry['total'] = len(required)
+        entry['passed'] = passed
+        entry['percent'] = int(passed / len(required) * 100) if required else 0
+        entry['theory_count'] = sum(1 for st in entry['steps'] if st.step_type == Step.THEORY)
+        entry['quiz_count'] = sum(1 for st in entry['steps'] if st.step_type == Step.QUIZ)
         entry['is_completed'] = is_module_completed(entry)
         entry['is_unlocked'] = previous_completed
         previous_completed = previous_completed and entry['is_completed']
@@ -159,7 +169,10 @@ def structured_course(request, course_id):
                 'type': step.step_type,
                 'content': step.content,
                 'status': status,
+                'required': step.is_required,
                 'quiz': {
+                    # only revealed once the learner has already passed the step
+                    'answer': step.quiz_correct_answer if status == UserStepProgress.PASSED else '',
                     'question': step.quiz_question,
                     'options': [
                         opt for opt in [
@@ -180,17 +193,171 @@ def structured_course(request, course_id):
     if request.user.is_authenticated:
         progress = _progress_summary(request.user, course)
 
+    next_module_entry = None
+    if selected_module_entry:
+        position = module_entries.index(selected_module_entry)
+        if position + 1 < len(module_entries):
+            next_module_entry = module_entries[position + 1]
+
+    all_steps = [st for entry in module_entries for st in entry['steps']]
+    stats = {
+        'modules': len(module_entries),
+        'theory': sum(1 for st in all_steps if st.step_type == Step.THEORY),
+        'quiz': sum(1 for st in all_steps if st.step_type == Step.QUIZ),
+        'workshop': sum(1 for st in all_steps if st.step_type == Step.WORKSHOP),
+    }
+
     return render(
         request,
         'courses/structured_course.html',
         {
             'course': course,
+            'theme': _course_theme(course),
+            'stats': stats,
             'modules': module_entries,
+            'selected_entry': selected_module_entry,
             'selected_module': selected_module_entry['module'] if selected_module_entry else None,
+            'next_module_entry': next_module_entry,
             'steps_payload': steps_payload,
             'progress': progress,
+            'ui_strings': _course_ui_strings(),
         }
     )
+
+
+def _course_theme(course):
+    name = (getattr(course, 'name_en', None) or course.name or '').lower()
+    for key in ('excel', 'powerpoint'):
+        if key in name:
+            return key
+    return 'word'
+
+
+def _course_ui_strings():
+    return {
+        'theory': _('Theory'),
+        'quiz': _('MCQ'),
+        'workshop': _('Workshop'),
+        'step_of': _('Step {n} of {total}'),
+        'min_read': _('{n} min read'),
+        'locked': _('Locked'),
+        'completed': _('Completed'),
+        'mark_complete': _('Mark as complete'),
+        'check_answer': _('Check answer'),
+        'next': _('Next'),
+        'quiz_intro': _('Choose one answer, then check it to continue.'),
+        'correct': _('Correct! Well done.'),
+        'workshop_passed': _('Workshop already passed.'),
+        'workshop_note': _('Build the task in Microsoft Word and upload your .docx file.'),
+        'min_words': _('At least {n} words'),
+        'required_text': _('Must contain the text: {text}'),
+        'choose_file': _('Please choose a .docx file first.'),
+        'no_file': _('No file chosen'),
+        'empty_theory': _('Review this step, then mark it as complete to continue.'),
+        'generic_error': _('Something went wrong. Please try again.'),
+    }
+
+
+@login_required
+def dashboard(request):
+    user = request.user
+    steps = list(
+        Step.objects
+        .filter(topic__is_published=True)
+        .select_related('topic__module__course')
+        .order_by('topic__module__course_id', 'topic__module__order', 'topic__order', 'order', 'id')
+    )
+    passed_at = dict(
+        UserStepProgress.objects
+        .filter(user=user, status=UserStepProgress.PASSED)
+        .values_list('step_id', 'completed_at')
+    )
+
+    cards = {}
+    for course in Course.objects.all():
+        cards[course.id] = {
+            'course': course,
+            'theme': _course_theme(course),
+            'url': reverse('structured_course', args=[course.id]),
+            'modules': {},
+            'total': 0,
+            'passed': 0,
+            'last_activity': None,
+        }
+
+    for step in steps:
+        module = step.topic.module
+        card = cards[module.course_id]
+        entry = card['modules'].setdefault(module.id, {'module': module, 'total': 0, 'passed': 0, 'next_step': None})
+        done = step.id in passed_at
+        if done and passed_at[step.id] and (card['last_activity'] is None or passed_at[step.id] > card['last_activity']):
+            card['last_activity'] = passed_at[step.id]
+        if not step.is_required:
+            continue
+        entry['total'] += 1
+        card['total'] += 1
+        if done:
+            entry['passed'] += 1
+            card['passed'] += 1
+        elif entry['next_step'] is None:
+            entry['next_step'] = step
+
+    course_cards = []
+    for card in cards.values():
+        modules = list(card.pop('modules').values())
+        finished = [m for m in modules if m['total'] and m['passed'] == m['total']]
+        # modules unlock in order, so the first unfinished one is where the learner is
+        current = next((m for m in modules if m['total'] and m['passed'] < m['total']), None)
+        card.update({
+            'module_count': len(modules),
+            'modules_done': len(finished),
+            'percent': int(card['passed'] / card['total'] * 100) if card['total'] else 0,
+            'is_started': card['passed'] > 0,
+            'is_complete': bool(card['total']) and card['passed'] == card['total'],
+            'current_module': current['module'] if current else None,
+            'next_step': current['next_step'] if current else None,
+            'continue_url': f"{card['url']}?module={current['module'].id}" if current else card['url'],
+        })
+        course_cards.append(card)
+
+    in_progress = [c for c in course_cards if c['is_started'] and not c['is_complete']]
+    resume = max(in_progress, key=lambda c: c['last_activity'].timestamp() if c['last_activity'] else 0, default=None)
+    if resume is None:
+        resume = next((c for c in course_cards if c['total'] and not c['is_complete']), None)
+
+    total = sum(c['total'] for c in course_cards)
+    passed = sum(c['passed'] for c in course_cards)
+    passed_steps = [st for st in steps if st.id in passed_at]
+
+    recent = (
+        UserStepProgress.objects
+        .filter(user=user, status=UserStepProgress.PASSED, completed_at__isnull=False)
+        .select_related('step__topic__module__course')
+        .order_by('-completed_at')[:6]
+    )
+    submissions = (
+        WorkshopSubmission.objects
+        .filter(user=user)
+        .select_related('step__topic__module__course')[:5]
+    )
+
+    return render(request, 'courses/dashboard.html', {
+        'course_cards': course_cards,
+        'resume': resume,
+        'overall': {
+            'total': total,
+            'passed': passed,
+            'percent': int(passed / total * 100) if total else 0,
+        },
+        'stats': {
+            'lessons': sum(1 for st in passed_steps if st.step_type == Step.THEORY),
+            'quizzes': sum(1 for st in passed_steps if st.step_type == Step.QUIZ),
+            'workshops': sum(1 for st in passed_steps if st.step_type == Step.WORKSHOP),
+            'modules': sum(c['modules_done'] for c in course_cards),
+        },
+        'recent': [{'progress': p, 'theme': _course_theme(p.step.topic.module.course)} for p in recent],
+        'submissions': submissions,
+    })
 
 
 def structured_word_course(request):

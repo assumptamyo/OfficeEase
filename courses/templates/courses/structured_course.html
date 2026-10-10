@@ -21,110 +21,187 @@
 </script>
 {% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'course.css' %}?v=20261010c">
+<link rel="stylesheet" href="{% static 'lesson_figures.css' %}?v=20261010">
+{% endblock %}
+
 {% block content %}
-<main class="max-w-7xl mx-auto mt-8 px-4 lg:px-10 pb-20">
-  <section class="mb-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-      <div>
-        <p class="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">{% trans "Structured Learning" %}</p>
-        <h1 class="mt-2 text-3xl font-black text-slate-900">{{ course.name }}</h1>
-        <p class="mt-2 text-sm text-slate-500">{% trans "This is the guided tutorial path. Read the theory, answer the MCQs, upload the workshop file, and only then unlock the next module." %}</p>
-      </div>
-      <div class="w-full md:w-80">
-        <label for="module-select" class="mb-2 block text-xs font-bold uppercase tracking-widest text-slate-500">{% trans "Module" %}</label>
-        <select id="module-select" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700">
-          {% for entry in modules %}
-          <option value="{{ entry.module.id }}" {% if selected_module and selected_module.id == entry.module.id %}selected{% endif %} {% if not entry.is_unlocked %}disabled{% endif %}>
-            {{ entry.module.title }} {% if not entry.is_unlocked %}({% trans "Locked" %}){% endif %}
-          </option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
+<main id="course-root" class="course theme-{{ theme }} max-w-7xl mx-auto mt-6 px-3 lg:px-6 pb-20"
+  data-authenticated="{% if user.is_authenticated %}1{% else %}0{% endif %}"
+  data-login-url="{% url 'auth' %}?next={{ request.get_full_path|urlencode }}">
 
-    <div class="mt-6 grid gap-4 lg:grid-cols-4">
-      <div class="rounded-2xl border border-blue-100 bg-blue-50 p-4">
-        <p class="text-[10px] font-black uppercase tracking-widest text-blue-600">1</p>
-        <h3 class="mt-2 text-sm font-black text-slate-900">{% trans "Read the theory" %}</h3>
-        <p class="mt-1 text-xs text-slate-600">{% trans "Start with short lesson blocks that explain the concept clearly." %}</p>
-      </div>
-      <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
-        <p class="text-[10px] font-black uppercase tracking-widest text-indigo-600">2</p>
-        <h3 class="mt-2 text-sm font-black text-slate-900">{% trans "Answer MCQs" %}</h3>
-        <p class="mt-1 text-xs text-slate-600">{% trans "Each checkpoint confirms understanding before you move forward." %}</p>
-      </div>
-      <div class="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
-        <p class="text-[10px] font-black uppercase tracking-widest text-emerald-600">3</p>
-        <h3 class="mt-2 text-sm font-black text-slate-900">{% trans "Complete the workshop" %}</h3>
-        <p class="mt-1 text-xs text-slate-600">{% trans "Build the file in Word, then upload the .docx for checking." %}</p>
-      </div>
-      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-        <p class="text-[10px] font-black uppercase tracking-widest text-slate-600">4</p>
-        <h3 class="mt-2 text-sm font-black text-slate-900">{% trans "Unlock the next module" %}</h3>
-        <p class="mt-1 text-xs text-slate-600">{% trans "Progress is locked until every required step in the module passes." %}</p>
-      </div>
-    </div>
+  <!-- course header -->
+  <section class="course-hero relative overflow-hidden rounded-[2rem] p-7 text-white lg:p-10">
+    <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-white/10"></div>
+    <div class="pointer-events-none absolute -bottom-28 right-40 h-56 w-56 rounded-full bg-white/5"></div>
 
-    <div class="mt-6">
-      <div class="mb-2 flex items-center justify-between">
-        <span class="text-xs font-bold uppercase tracking-widest text-slate-500">{% trans "Progress" %}</span>
-        <span id="progress-text" class="text-xs font-semibold text-slate-600">{{ progress.passed }}/{{ progress.total }} {% trans "steps complete" %}</span>
+    <div class="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+      <div class="max-w-2xl">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em]">
+          <i class="fa-solid {{ course.icon_class }}"></i>
+          {% trans "Structured Course" %}
+        </span>
+        <h1 class="mt-4 text-4xl font-black tracking-tight lg:text-5xl">{{ course.name }}</h1>
+        {% if course.description %}
+        <p class="mt-3 text-base text-white/80 lg:text-lg">{{ course.description }}</p>
+        {% endif %}
+        <div class="mt-6 flex flex-wrap gap-2.5 text-sm font-bold">
+          <span class="course-stat"><i class="fa-solid fa-layer-group"></i>{{ stats.modules }} {% trans "Modules" %}</span>
+          <span class="course-stat"><i class="fa-solid fa-book-open"></i>{{ stats.theory }} {% trans "Theory lessons" %}</span>
+          <span class="course-stat"><i class="fa-solid fa-circle-question"></i>{{ stats.quiz }} {% trans "MCQs" %}</span>
+          <span class="course-stat"><i class="fa-solid fa-screwdriver-wrench"></i>{{ stats.workshop }} {% trans "Workshops" %}</span>
+        </div>
       </div>
-      <div class="h-3 w-full rounded-full bg-slate-100">
-        <div id="progress-bar" data-progress="{{ progress.percent }}" class="h-3 rounded-full bg-gradient-to-r from-emerald-500 to-blue-600" style="width: 0%;"></div>
+
+      <div class="flex shrink-0 items-center gap-5 rounded-3xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
+        <div class="relative h-28 w-28">
+          <svg viewBox="0 0 120 120" class="h-full w-full -rotate-90">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="10" />
+            <circle id="progress-ring" cx="60" cy="60" r="52" fill="none" stroke="#fff" stroke-width="10"
+              stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"
+              data-progress="{{ progress.percent }}" class="transition-all duration-700" />
+          </svg>
+          <div class="absolute inset-0 grid place-items-center">
+            <span class="text-2xl font-black"><span id="progress-percent">{{ progress.percent }}</span>%</span>
+          </div>
+        </div>
+        <div>
+          <p class="text-[10px] font-black uppercase tracking-[0.2em] text-white/70">{% trans "Progress" %}</p>
+          <p class="mt-1 text-lg font-black"><span id="progress-passed">{{ progress.passed }}</span>/<span id="progress-total">{{ progress.total }}</span></p>
+          <p class="text-xs font-semibold text-white/70">{% trans "steps complete" %}</p>
+          {% if not user.is_authenticated %}
+          <a href="{% url 'auth' %}?next={{ request.get_full_path|urlencode }}" class="mt-3 inline-block rounded-lg bg-white px-3 py-1.5 text-xs font-black text-slate-900">{% trans "Sign In" %}</a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="grid grid-cols-1 gap-6 lg:grid-cols-12">
-    <aside class="lg:col-span-4">
-      <div class="rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
-        <h2 class="mb-3 text-sm font-black uppercase tracking-widest text-slate-600">{% trans "Tutorial Path" %}</h2>
-        <div class="mb-4 rounded-2xl border border-slate-200 bg-white p-4">
-          <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">{% trans "How it works" %}</p>
-          <p class="mt-2 text-sm text-slate-600">{% trans "This path teaches you one module at a time. Follow the steps in order, then move to the next module when the workshop passes." %}</p>
+  <!-- modules -->
+  <section class="mt-8">
+    <div class="mb-3 flex items-end justify-between px-1">
+      <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-500">{% trans "Modules" %}</h2>
+      <p class="text-xs font-semibold text-slate-400">{% trans "Finish a module to unlock the next one" %}</p>
+    </div>
+    <div class="flex gap-3 overflow-x-auto pb-2">
+      {% for entry in modules %}
+      {% if entry.is_unlocked %}
+      <a href="?module={{ entry.module.id }}"
+        class="module-card {% if selected_module and selected_module.id == entry.module.id %}is-current{% endif %} {% if entry.is_completed %}is-done{% endif %}">
+      {% else %}
+      <div class="module-card is-locked" aria-disabled="true">
+      {% endif %}
+        <div class="flex items-center justify-between">
+          <span class="module-num">{{ entry.number|stringformat:"02d" }}</span>
+          {% if entry.is_completed %}
+          <i class="fa-solid fa-circle-check text-emerald-500"></i>
+          {% elif not entry.is_unlocked %}
+          <i class="fa-solid fa-lock text-slate-300"></i>
+          {% else %}
+          <i class="fa-solid fa-circle-play module-play"></i>
+          {% endif %}
         </div>
-        <div id="steps-list" class="space-y-2"></div>
+        <h3 class="mt-3 line-clamp-2 min-h-[2.5rem] text-sm font-extrabold leading-tight text-slate-900">{{ entry.module.title }}</h3>
+        <p class="mt-2 flex gap-3 text-[11px] font-semibold text-slate-500">
+          <span><i class="fa-solid fa-book-open mr-1"></i>{{ entry.theory_count }}</span>
+          <span><i class="fa-solid fa-circle-question mr-1"></i>{{ entry.quiz_count }}</span>
+        </p>
+        <div class="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+          <div class="module-bar h-full rounded-full" style="width: {{ entry.percent }}%"
+            {% if selected_module and selected_module.id == entry.module.id %}id="current-module-bar"{% endif %}></div>
+        </div>
+      {% if entry.is_unlocked %}</a>{% else %}</div>{% endif %}
+      {% empty %}
+      <p class="rounded-2xl border border-dashed border-slate-300 p-6 text-sm text-slate-500">{% trans "No modules have been added to this course yet." %}</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% if steps_payload %}
+  <section class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
+    <!-- steps of the selected module -->
+    <aside class="lg:col-span-4">
+      <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm lg:sticky lg:top-24">
+        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{% trans "Module" %} {{ selected_entry.number|stringformat:"02d" }}</p>
+        <h2 class="mt-1 text-lg font-black leading-snug text-slate-900">{{ selected_module.title }}</h2>
+        <div id="steps-list" class="mt-5 space-y-2"></div>
       </div>
     </aside>
 
+    <!-- step viewer -->
     <div class="lg:col-span-8">
-      <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <p id="step-badge" class="mb-2 text-[10px] font-black uppercase tracking-widest text-blue-600"></p>
-        <h2 id="step-title" class="text-3xl font-black text-slate-900"></h2>
-        <div id="step-content" class="mt-4 text-slate-600 leading-relaxed"></div>
-
-        <div id="quiz-panel" class="mt-6 hidden rounded-2xl border border-indigo-200 bg-indigo-50 p-4">
-          <h3 class="text-lg font-black text-slate-900">{% trans "MCQ Checkpoint" %}</h3>
-          <p id="quiz-question" class="mt-2 text-sm font-semibold text-slate-700"></p>
-          <div id="quiz-options" class="mt-3 space-y-2"></div>
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-6 py-4">
+          <div class="flex items-center gap-3">
+            <span id="step-type" class="step-chip"></span>
+            <span id="step-count" class="text-xs font-bold text-slate-400"></span>
+          </div>
+          <div id="step-dots" class="flex items-center gap-1.5"></div>
         </div>
 
-        <div id="workshop-panel" class="mt-6 hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-          <h3 class="text-lg font-black text-slate-900">{% trans "Workshop" %}</h3>
-          <p id="workshop-note" class="mt-2 text-sm text-slate-600"></p>
-          <div class="mt-4 space-y-3">
-            <input id="workshop-file" type="file" accept=".docx" class="block w-full rounded-xl border border-slate-300 bg-white p-2.5 text-sm text-slate-700">
-            <button id="submit-workshop-btn" class="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-700">{% trans "Upload and Check" %}</button>
-            <p id="workshop-result" class="text-sm text-slate-700"></p>
+        <div class="p-6 lg:p-8">
+          <h2 id="step-title" class="text-2xl font-black text-slate-900 lg:text-3xl"></h2>
+          <div id="step-content" class="step-content mt-5"></div>
+
+          <div id="quiz-panel" class="mt-2 hidden">
+            <p class="text-xs font-bold uppercase tracking-widest text-slate-400">{% trans "MCQ Checkpoint" %}</p>
+            <p id="quiz-question" class="mt-2 text-xl font-extrabold leading-snug text-slate-900"></p>
+            <div id="quiz-options" class="mt-5 grid gap-3"></div>
+          </div>
+
+          <div id="workshop-panel" class="workshop-panel mt-6 hidden">
+            <h3 class="flex items-center gap-2 text-base font-black text-slate-900">
+              <i class="fa-solid fa-cloud-arrow-up"></i>{% trans "Submit your work" %}
+            </h3>
+            <ul id="workshop-rules" class="mt-3 space-y-1.5 text-sm text-slate-600"></ul>
+            <label for="workshop-file" class="workshop-drop mt-4">
+              <i class="fa-solid fa-file-word text-2xl"></i>
+              <span id="workshop-filename" class="text-sm font-bold"></span>
+              <span class="text-xs text-slate-500">{% trans "Click to choose a .docx file" %}</span>
+              <input id="workshop-file" type="file" accept=".docx" class="sr-only">
+            </label>
+            <button id="submit-workshop-btn" type="button" class="course-btn mt-4">{% trans "Upload and Check" %}</button>
+          </div>
+
+          <p id="step-feedback" class="step-feedback mt-5 hidden" role="status"></p>
+
+          <div id="module-complete" class="module-complete mt-6 hidden">
+            <div class="flex items-center gap-4">
+              <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-emerald-500 text-xl text-white"><i class="fa-solid fa-trophy"></i></span>
+              <div>
+                <p class="text-base font-black text-slate-900">{% trans "Module complete!" %}</p>
+                <p class="text-sm text-slate-600">
+                  {% if next_module_entry %}{% trans "The next module is now unlocked." %}{% else %}{% trans "You have finished every module in this course." %}{% endif %}
+                </p>
+              </div>
+            </div>
+            {% if next_module_entry %}
+            <a href="?module={{ next_module_entry.module.id }}" class="course-btn shrink-0">{% trans "Next module" %} <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            {% endif %}
           </div>
         </div>
 
-        <div class="mt-8 flex items-center justify-between gap-3">
-          <button id="prev-step-btn" class="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50">{% trans "Previous" %}</button>
-          <button id="next-step-btn" class="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-bold text-white hover:bg-blue-700">{% trans "Next" %}</button>
+        <div class="flex items-center justify-between gap-3 border-t border-slate-100 bg-slate-50 px-6 py-4">
+          <button id="prev-step-btn" type="button" class="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-bold text-slate-600 transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40">
+            <i class="fa-solid fa-arrow-left mr-1"></i>{% trans "Previous" %}
+          </button>
+          <button id="next-step-btn" type="button" class="course-btn"></button>
         </div>
       </div>
     </div>
   </section>
+  {% elif selected_module %}
+  <p class="mt-6 rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center text-sm text-slate-500">{% trans "This module has no lessons yet." %}</p>
+  {% endif %}
 
   {{ steps_payload|json_script:"steps-data" }}
+  {{ ui_strings|json_script:"course-ui" }}
 </main>
 {% endblock %}
 
 {% block footer %}{% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'accounts/structured_course.js' %}?v=20260418"></script>
+<script src="{% static 'accounts/structured_course.js' %}?v=20261010c"></script>
 {% endblock %}
- 

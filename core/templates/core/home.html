@@ -6,22 +6,26 @@
 {% block meta_description %}{% trans "Learn Microsoft Word, Excel, and PowerPoint through structured lessons, quizzes, and workshops designed for beginners and professionals." %}{% endblock %}
 {% block meta_keywords %}OfficeEase, Microsoft Office training, Word lessons, Excel lessons, PowerPoint lessons, online office skills{% endblock %}
 
-{% block content %}  
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home_demos.css' %}">
+{% endblock %}
+
+{% block content %}
 <section class="max-w-7xl mx-auto mt-10 px-10 min-h-[85vh] flex items-center overflow-visible pb-20">
     <div class="flex flex-col lg:flex-row items-center gap-16 w-full">
       <div class="lg:w-1/2">
-        <!-- <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight font-sans text-slate-900 mb-10" >
+        {% comment %} <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight font-sans text-slate-900 mb-10" >
           <span class="block animate-typing delay-1 mb-2">{% trans "Learn" %}</span>
           <span class="block animate-typing delay-2 text-blue-600 mb-2">{% trans "Microsoft Office" %}</span>
           <span class="block animate-typing delay-3">{% trans "the Easy Way" %}</span>
-        </h1> -->
+        </h1>  {% endcomment %}
         {% get_current_language as LANGUAGE_CODE %}
 
         {% if LANGUAGE_CODE == "en" %}
         <h1 class="hero-title text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight font-sans text-slate-900 mb-10">
-            <span class="animate-typing delay-1 mb-2">Learn</span>
-            <span class=" animate-typing delay-2 text-blue-600 mb-2">Microsoft Office</span>
-            <span class="animate-typing delay-3">the Easy Way</span>
+            <span class="block animate-typing delay-1 mb-2">Learn</span>
+            <span class="block animate-typing delay-2 text-blue-600 mb-2">Microsoft Office</span>
+            <span class="block animate-typing delay-3">the Easy Way</span>
         </h1>
 
         {% elif LANGUAGE_CODE == "fr" %}
@@ -49,10 +53,11 @@
         <div class="animate-together">
           <p class="mt-6 text-lg max-w-xl text-slate-600" >{% trans "Clear lessons, simple language, and structured steps — with local language support — to help you master MS Office with confidence." %}</p>
           <div class="mt-8">
-            <button class="px-8 py-4 rounded-lg font-bold text-white bg-slate-900 
+            {% url 'word_course' as course_url %}
+            <a href="{% if user.is_authenticated %}{{ course_url }}{% else %}{% url 'auth' %}?next={{ course_url|urlencode }}{% endif %}"
+              class="inline-block px-8 py-4 rounded-lg font-bold text-white bg-slate-900 
                transition-all duration-300 ease-in-out
-               hover:bg-blue-600 hover:shadow-xl" >{% trans "Start Learning Now" %}
-            </button>
+               hover:bg-blue-600 hover:shadow-xl">{% trans "Start Learning Now" %}</a>
           </div>
         </div>
       </div>
@@ -171,36 +176,25 @@
             <span
               class="px-5 py-2.5 bg-white/10 border border-white/10 rounded-xl text-white text-sm font-bold backdrop-blur-sm" >{% trans "Pro Resume Design" %}</span>
           </div>
-          {% if user.is_authenticated %}
-          <a href="#">
-            <button  class="px-12 py-5 rounded-2xl font-black text-xl text-[#2b579a] bg-white 
+          {% url 'word_course' as course_url %}
+          <a href="{% if user.is_authenticated %}{{ course_url }}{% else %}{% url 'auth' %}?next={{ course_url|urlencode }}{% endif %}"
+            class="inline-block px-12 py-5 rounded-2xl font-black text-xl text-[#2b579a] bg-white
             border-2 border-transparent transition-all duration-300 ease-in-out
-            hover:bg-blue-600 hover:text-white hover:shadow-[0_15px_30px_rgba(37,99,235,0.3)]" >{% trans "Start Project Now" %}
-          </a>
-          </button>
-          {% else %}
-          <a href="{% url 'auth' %}">
-            <button class="px-12 py-5 rounded-2xl font-black text-xl text-[#2b579a] bg-white 
-            border-2 border-transparent transition-all duration-300 ease-in-out
-            hover:bg-blue-600 hover:text-white hover:shadow-[0_15px_30px_rgba(37,99,235,0.3)]" >{% trans "Start Project Now" %}</a>
-          </button> 
-          {% endif %}
+            hover:bg-blue-600 hover:text-white hover:shadow-[0_15px_30px_rgba(37,99,235,0.3)]">{% trans "Start Project Now" %}</a>
         </div>
 
         <div class="lg:w-1/2 relative group">
           <div
             class="relative bg-white/5 p-2 rounded-[2.5rem] shadow-[0_50px_100px_rgba(0,0,0,0.3)] border border-white/10 backdrop-blur-xl overflow-hidden transition-all duration-500 transform group-hover:shadow-2xl group-hover:scale-[1.02]">
-            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden bg-black">
-              <video class="w-full h-full object-cover" autoplay loop muted playsinline>
-                <source src="your-video.mp4" type="video/mp4">
-              </video>
-              <div class="absolute top-6 left-6">
-                <div
-                  class="bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 flex items-center gap-2">
-                  <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                  <p class="text-white text-[10px] font-black uppercase tracking-widest" >{% trans "Live Demo" %}</p>
-                </div>
-              </div>
+            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden bg-slate-200">
+              {% include 'core/demos/word_demo.html' %}
+            </div>
+          </div>
+          <div class="absolute -top-4 left-8 z-20">
+            <div
+              class="bg-black/70 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 flex items-center gap-2">
+              <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+              <p class="text-white text-[10px] font-black uppercase tracking-widest" >{% trans "Live Demo" %}</p>
             </div>
           </div>
         </div>
@@ -227,21 +221,19 @@
         <div class="lg:w-1/2 relative group">
           <div
             class="relative bg-white p-3 rounded-[3rem] shadow-[0_40px_100px_rgba(16,185,129,0.2)] border border-emerald-100 overflow-hidden transition-all duration-700 transform group-hover:shadow-2xl group-hover:scale-[1.02]">
-            <div class="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-slate-900">
-              <video class="w-full h-full object-cover opacity-90" autoplay loop muted playsinline>
-                <source src="your-excel-video.mp4" type="video/mp4">
-              </video>
-              <div class="absolute top-8 left-8">
-                <div
-                  class="bg-white/95 backdrop-blur-md px-5 py-2.5 rounded-2xl shadow-lg border border-emerald-200 flex items-center gap-2">
-                  <span class="relative flex h-2 w-2">
-                    <span
-                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <p class="text-emerald-900 text-[10px] font-black uppercase tracking-widest" >{% trans "Excel Live: Data Magic" %}</p>
-                </div>
-              </div>
+            <div class="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-slate-200">
+              {% include 'core/demos/excel_demo.html' %}
+            </div>
+          </div>
+          <div class="absolute -top-4 left-8 z-20">
+            <div
+              class="bg-white/95 backdrop-blur-md px-5 py-2.5 rounded-2xl shadow-lg border border-emerald-200 flex items-center gap-2">
+              <span class="relative flex h-2 w-2">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <p class="text-emerald-900 text-[10px] font-black uppercase tracking-widest" >{% trans "Excel Live: Data Magic" %}</p>
             </div>
           </div>
           <div
@@ -272,10 +264,11 @@
             <span
               class="px-5 py-2.5 bg-emerald-50 border border-emerald-100 rounded-xl text-emerald-700 text-sm font-bold" >{% trans "Dynamic Charts" %}</span>
           </div>
-          <button class="px-12 py-5 rounded-2xl font-black text-xl text-white bg-slate-900 
+          {% url 'excel_course' as course_url %}
+          <a href="{% if user.is_authenticated %}{{ course_url }}{% else %}{% url 'auth' %}?next={{ course_url|urlencode }}{% endif %}"
+            class="inline-block px-12 py-5 rounded-2xl font-black text-xl text-white bg-slate-900 
                transition-all duration-300 ease-in-out
-               hover:bg-emerald-600 hover:shadow-[0_20px_40px_rgba(16,185,129,0.3)]" >{% trans "Unlock Data Mastery" %}
-          </button>
+               hover:bg-emerald-600 hover:shadow-[0_20px_40px_rgba(16,185,129,0.3)]">{% trans "Unlock Data Mastery" %}</a>
         </div>
       </div>
     </div>
@@ -363,30 +356,29 @@
               class="px-5 py-2.5 bg-orange-50 border border-orange-100 rounded-xl text-orange-700 text-sm font-bold" >{% trans "Visual Storytelling" %}</span>
           </div>
 
-          <button  class="px-12 py-5 rounded-2xl font-black text-xl text-white bg-slate-900 
+          {% url 'powerpoint_course' as course_url %}
+          <a href="{% if user.is_authenticated %}{{ course_url }}{% else %}{% url 'auth' %}?next={{ course_url|urlencode }}{% endif %}"
+            class="inline-block px-12 py-5 rounded-2xl font-black text-xl text-white bg-slate-900 
                        transition-all duration-300 ease-in-out
-                       hover:bg-orange-600 hover:shadow-[0_20px_40px_rgba(234,88,12,0.3)] mb-10" >{% trans "Become a Pro Speaker" %}</button>
+                       hover:bg-orange-600 hover:shadow-[0_20px_40px_rgba(234,88,12,0.3)] mb-10">{% trans "Become a Pro Speaker" %}</a>
         </div>
 
         <div class="lg:w-1/2 relative group">
           <div
             class="relative bg-white p-3 rounded-[3rem] shadow-xl border border-orange-50 overflow-hidden transition-all duration-500 group-hover:shadow-2xl">
-            <div class="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-slate-900">
-              <video class="w-full h-full object-cover opacity-90" autoplay loop muted playsinline>
-                <source src="your-pp-video.mp4" type="video/mp4">
-              </video>
-
-              <div class="absolute top-8 left-8">
-                <div
-                  class="bg-white/95 backdrop-blur-md px-5 py-2.5 rounded-2xl shadow-lg border border-orange-200 flex items-center gap-2">
-                  <span class="relative flex h-2 w-2">
-                    <span
-                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
-                  </span>
-                  <p class="text-orange-900 text-[10px] font-black uppercase tracking-widest" >{% trans "Live: Pitch Deck Magic" %}</p>
-                </div>
-              </div>
+            <div class="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-slate-200">
+              {% include 'core/demos/powerpoint_demo.html' %}
+            </div>
+          </div>
+          <div class="absolute -top-4 left-8 z-20">
+            <div
+              class="bg-white/95 backdrop-blur-md px-5 py-2.5 rounded-2xl shadow-lg border border-orange-200 flex items-center gap-2">
+              <span class="relative flex h-2 w-2">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
+              </span>
+              <p class="text-orange-900 text-[10px] font-black uppercase tracking-widest" >{% trans "Live: Pitch Deck Magic" %}</p>
             </div>
           </div>
         </div>
@@ -397,7 +389,7 @@
   {% endblock %}
 
   {% block extra_js %}
-  <script src="{% static 'accounts/home.js' %}"></script>
+  <script src="{% static 'home_demos.js' %}"></script>
   {% if not user.is_authenticated %}
   <script>
     document.addEventListener('DOMContentLoaded', () => {

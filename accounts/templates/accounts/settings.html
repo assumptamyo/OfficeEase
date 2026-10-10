@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Account Settings" %} | OfficeEase{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block content %}
+<main class="max-w-5xl mx-auto mt-6 px-3 lg:px-6 pb-20">
+
+  <section class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-7 text-white lg:p-9">
+    <div class="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-white/5"></div>
+    <div class="relative flex items-center gap-5">
+      <span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-500 text-2xl font-black shadow-lg">
+        {{ user.first_name|slice:":1"|default:user.username|slice:":1"|upper }}
+      </span>
+      <div class="min-w-0">
+        <p class="text-[10px] font-black uppercase tracking-[0.2em] text-blue-300">{% trans "Account Settings" %}</p>
+        <h1 class="mt-1 truncate text-2xl font-black tracking-tight lg:text-3xl">{{ user.get_full_name|default:user.username }}</h1>
+        <p class="mt-1 truncate text-sm text-white/70">{{ user.email }}</p>
+      </div>
+    </div>
+  </section>
+
+  {% for message in messages %}
+  <p class="mt-5 flex items-center gap-3 rounded-2xl px-5 py-3 text-sm font-bold {% if message.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-emerald-50 text-emerald-700{% endif %}" role="status">
+    <i class="fa-solid {% if message.tags == 'error' %}fa-circle-exclamation{% else %}fa-circle-check{% endif %}"></i>{{ message }}
+  </p>
+  {% endfor %}
+
+  <div class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-5">
+
+    <!-- profile -->
+    <form method="post" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-3 lg:p-8" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="action" value="profile">
+      <h2 class="flex items-center gap-3 text-lg font-black text-slate-900">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-blue-100 text-sm text-blue-600"><i class="fa-solid fa-user"></i></span>
+        {% trans "Profile" %}
+      </h2>
+      <p class="mt-1 text-sm text-slate-500">{% trans "Your name appears on your dashboard and certificates." %}</p>
+
+      {% if profile_form.non_field_errors %}
+      <p class="mt-4 text-sm font-semibold text-red-600">{{ profile_form.non_field_errors.0 }}</p>
+      {% endif %}
+
+      <div class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
+          <label for="id_first_name" class="settings-label">{% trans "First name" %}</label>
+          <input id="id_first_name" name="first_name" type="text" maxlength="150" required autocomplete="given-name"
+            value="{{ profile_form.first_name.value|default:'' }}" class="settings-input {% if profile_form.first_name.errors %}has-error{% endif %}">
+          {% for error in profile_form.first_name.errors %}<p class="settings-error">{{ error }}</p>{% endfor %}
+        </div>
+        <div>
+          <label for="id_last_name" class="settings-label">{% trans "Last name" %}</label>
+          <input id="id_last_name" name="last_name" type="text" maxlength="150" required autocomplete="family-name"
+            value="{{ profile_form.last_name.value|default:'' }}" class="settings-input {% if profile_form.last_name.errors %}has-error{% endif %}">
+          {% for error in profile_form.last_name.errors %}<p class="settings-error">{{ error }}</p>{% endfor %}
+        </div>
+        <div class="sm:col-span-2">
+          <label for="id_email" class="settings-label">{% trans "Email" %}</label>
+          <input id="id_email" name="email" type="email" required autocomplete="email"
+            value="{{ profile_form.email.value|default:'' }}" class="settings-input {% if profile_form.email.errors %}has-error{% endif %}">
+          {% for error in profile_form.email.errors %}<p class="settings-error">{{ error }}</p>{% endfor %}
+          <p class="mt-1.5 text-xs text-slate-400">{% trans "You sign in with this email." %}</p>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="id_bio" class="settings-label">{% trans "About you" %} <span class="font-medium normal-case tracking-normal text-slate-400">({% trans "optional" %})</span></label>
+          <textarea id="id_bio" name="bio" rows="4" maxlength="500" class="settings-input {% if profile_form.bio.errors %}has-error{% endif %}">{{ profile_form.bio.value|default:'' }}</textarea>
+          {% for error in profile_form.bio.errors %}<p class="settings-error">{{ error }}</p>{% endfor %}
+        </div>
+      </div>
+
+      <div class="mt-7 flex justify-end">
+        <button type="submit" class="rounded-xl bg-slate-900 px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-blue-600 hover:shadow-md">{% trans "Save changes" %}</button>
+      </div>
+    </form>
+
+    <!-- password -->
+    <form method="post" class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm lg:col-span-2 lg:p-8" novalidate>
+      {% csrf_token %}
+      <input type="hidden" name="action" value="password">
+      <h2 class="flex items-center gap-3 text-lg font-black text-slate-900">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-amber-100 text-sm text-amber-600"><i class="fa-solid fa-lock"></i></span>
+        {% trans "Password" %}
+      </h2>
+      <p class="mt-1 text-sm text-slate-500">{% trans "Use at least 8 characters that are hard to guess." %}</p>
+
+      <div class="mt-6 space-y-5">
+        <div>
+          <label for="id_old_password" class="settings-label">{% trans "Current password" %}</label>
+          <input id="id_old_password" name="old_password" type="password" required autocomplete="current-password"
+            class="settings-input {% if password_form.old_password.errors %}has-error{% endif %}">
+          {% for error in password_form.old_password.errors %}<p class="settings-error">{{ error }}</p>{% endfor %}
+        </div>
+        <div>
+          <label for="id_new_password1" class="settings-label">{% trans "New password" %}</label>
+          <input id="id_new_password1" name="new_password1" type="password" required autocomplete="new-password"
+            class="settings-input {% if password_form.new_password1.errors %}has-error{% endif %}">
+          {% for error in password_form.new_password1.errors %}<p class="settings-error">{{ error }}</p>{% endfor %}
+        </div>
+        <div>
+          <label for="id_new_password2" class="settings-label">{% trans "Confirm new password" %}</label>
+          <input id="id_new_password2" name="new_password2" type="password" required autocomplete="new-password"
+            class="settings-input {% if password_form.new_password2.errors %}has-error{% endif %}">
+          {% for error in password_form.new_password2.errors %}<p class="settings-error">{{ error }}</p>{% endfor %}
+        </div>
+      </div>
+
+      <div class="mt-7 flex items-center justify-between gap-3">
+        <a href="{% url 'password_reset' %}" class="text-xs font-bold text-blue-600 hover:underline">{% trans "Forgot password?" %}</a>
+        <button type="submit" class="rounded-xl bg-slate-900 px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-blue-600 hover:shadow-md">{% trans "Change password" %}</button>
+      </div>
+    </form>
+  </div>
+
+  <section class="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <div>
+      <h2 class="text-sm font-black text-slate-900">{% trans "Your learning" %}</h2>
+      <p class="mt-1 text-sm text-slate-500">{% trans "Member since" %} {{ user.date_joined|date:"j F Y" }}</p>
+    </div>
+    <div class="flex gap-3">
+      <a href="{% url 'dashboard' %}" class="rounded-xl border border-slate-300 px-5 py-2.5 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100"><i class="fa-solid fa-chart-pie mr-2"></i>{% trans "My Dashboard" %}</a>
+      <a href="{% url 'logout' %}" class="rounded-xl border border-red-200 px-5 py-2.5 text-sm font-bold text-red-600 transition-colors hover:bg-red-50"><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>{% trans "Log Out" %}</a>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  .settings-label { display: block; margin-bottom: .4rem; font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #475569; }
+  .settings-input { display: block; width: 100%; padding: .7rem .9rem; border: 1px solid #cbd5e1; border-radius: .75rem; background: #f8fafc; font-size: .9rem; color: #0f172a; outline: none; transition: border-color .15s, box-shadow .15s, background .15s; }
+  .settings-input:focus { border-color: #2563eb; background: #fff; box-shadow: 0 0 0 3px rgba(37, 99, 235, .12); }
+  .settings-input.has-error { border-color: #ef4444; background: #fef2f2; }
+  .settings-error { margin-top: .35rem; font-size: .75rem; font-weight: 600; color: #dc2626; }
+</style>
+{% endblock %}

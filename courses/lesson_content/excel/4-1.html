@@ -1,0 +1,107 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 4.1</span>
+    <p class="lesson-lead">A block of cells with headings looks like a table, but to Excel it is only a range. Declaring it an official <strong>Excel Table</strong> changes how it behaves: it grows by itself, formats itself and lets formulas refer to columns by name.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>convert a data range into an Excel Table and name it;</li>
+      <li>explain the advantages of a table over an ordinary range;</li>
+      <li>add a Total Row and a calculated column;</li>
+      <li>read and write structured references.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Preparing the data</h3>
+    <p>A table needs tidy data. Before converting a range, check that:</p>
+    <ul>
+      <li>the first row contains a unique <strong>heading</strong> for every column;</li>
+      <li>each row describes one item (one sale, one employee, one product);</li>
+      <li>there are no completely blank rows or columns inside the data;</li>
+      <li>there are no merged cells.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Creating a table</h3>
+    <ol class="lesson-steps">
+      <li>Click any single cell inside the data.</li>
+      <li>Press <kbd>Ctrl</kbd> + <kbd>T</kbd>, or choose <span class="lesson-path">Insert &gt; Table</span>.</li>
+      <li>Check the range Excel has detected, make sure <em>My table has headers</em> is ticked, and click OK.</li>
+      <li>On the <strong>Table Design</strong> tab, replace the default name (Table1) with a meaningful one such as <em>InventoryTable</em>. Table names cannot contain spaces.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-part">
+    <h3>What a table gives you</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Feature</th><th>Benefit</th></tr></thead>
+        <tbody>
+          <tr><td>Banded rows</td><td>Alternate rows are shaded automatically, and stay correct when rows are added or sorted</td></tr>
+          <tr><td>Filter buttons</td><td>Every heading gains a drop-down arrow for sorting and filtering</td></tr>
+          <tr><td>Automatic expansion</td><td>Type in the row below or the column beside the table and it becomes part of the table</td></tr>
+          <tr><td>Calculated columns</td><td>Enter a formula in one cell and it fills the whole column</td></tr>
+          <tr><td>Sticky headings</td><td>When you scroll, the column letters are replaced by the table headings</td></tr>
+          <tr><td>Total Row</td><td>A summary row with a choice of function for each column</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Automatic expansion is the most valuable of these. Charts, PivotTables and formulas built on a table include new rows the moment they are added, so reports never fall out of date because someone forgot to extend a range.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The Total Row</h3>
+    <p>Tick <span class="lesson-path">Table Design &gt; Total Row</span>, or press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd>. A row appears beneath the table. Click a cell in it and choose from the drop-down list: Sum, Average, Count, Max, Min and others.</p>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>The Total Row counts only the rows that are <em>visible</em>. Filter the table to one region and the total becomes the total for that region.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Structured references</h3>
+    <p>Inside a table, formulas use column names instead of cell addresses. These are <strong>structured references</strong>.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Structured reference</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>=[@Quantity]*[@Price]</code></td><td>Quantity times Price <em>in this row</em>. The @ sign means "this row".</td></tr>
+          <tr><td><code>=SUM(Sales[Amount])</code></td><td>The total of the whole Amount column of the table named Sales</td></tr>
+          <tr><td><code>=AVERAGE(Sales[Amount])</code></td><td>The average of that column</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Compare <code>=SUM(Sales[Amount])</code> with <code>=SUM(E4:E50)</code>. The first states what it calculates and remains correct when the table grows to row 500; the second does neither.</p>
+    <aside class="lesson-note is-warn"><strong>Note</strong>To turn a table back into an ordinary range, choose <span class="lesson-path">Table Design &gt; Convert to Range</span>. The formatting stays but the table behaviour is removed.</aside>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: a stock list</h4>
+    <ol class="lesson-steps">
+      <li>Click inside the data in A3:E50 and press <kbd>Ctrl</kbd> + <kbd>T</kbd>.</li>
+      <li>Name the table <em>InventoryTable</em> on the Table Design tab.</li>
+      <li>In the first empty column type the heading <em>Value</em>, then <code>=[@Quantity]*[@Price]</code>. The whole column fills.</li>
+      <li>Turn on the Total Row and set the Value column to <em>Sum</em>.</li>
+      <li>Type a new product in the row beneath the table and watch the total include it.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li><kbd>Ctrl</kbd> + <kbd>T</kbd> converts a range into an Excel Table.</li>
+      <li>Tables expand automatically, so everything built on them stays up to date.</li>
+      <li>A formula typed once becomes a calculated column.</li>
+      <li>Structured references use table and column names instead of cell addresses.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>Which shortcut converts a selected range into an Excel Table?</summary><p>Ctrl + T.</p></details>
+    <details><summary>In the formula =[@Hours]*[@Rate], what does the @ sign mean?</summary><p>"This row": the formula uses the Hours and Rate values from the same row as the formula.</p></details>
+    <details><summary>Why is a chart based on a table more reliable than one based on the range A1:D20?</summary><p>The table expands when rows are added, so the chart includes the new data automatically. A fixed range would have to be extended by hand.</p></details>
+  </section>
+</article>

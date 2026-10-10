@@ -1,0 +1,107 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 3.1</span>
+    <p class="lesson-lead">A spreadsheet without formulas is only a table. The moment a cell contains a <strong>formula</strong>, the sheet becomes a model: change one input and every result that depends on it recalculates. This lesson covers how formulas are written and why they adapt when copied.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>write formulas using the arithmetic operators and cell references;</li>
+      <li>predict the result of a formula using the order of operations;</li>
+      <li>explain how a relative reference changes when a formula is copied;</li>
+      <li>recognise the most common formula errors.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The structure of a formula</h3>
+    <p>Every formula begins with an <strong>equals sign</strong>. Without it, Excel stores what you typed as text. A formula is built from <em>operands</em> (numbers or cell references) joined by <em>operators</em>.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result if A1 = 10, B1 = 4</th></tr></thead>
+        <tbody>
+          <tr><td>+</td><td>Addition</td><td><code>=A1+B1</code></td><td>14</td></tr>
+          <tr><td>-</td><td>Subtraction</td><td><code>=A1-B1</code></td><td>6</td></tr>
+          <tr><td>*</td><td>Multiplication</td><td><code>=A1*B1</code></td><td>40</td></tr>
+          <tr><td>/</td><td>Division</td><td><code>=A1/B1</code></td><td>2.5</td></tr>
+          <tr><td>^</td><td>Exponent (power)</td><td><code>=A1^2</code></td><td>100</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Important</strong>Refer to cells, not to the numbers in them. <code>=B3*C3</code> updates when a price changes; <code>=12*4.5</code> does not, and nobody reading the sheet can tell where 4.5 came from.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Order of operations</h3>
+    <p>Excel does not calculate from left to right. It follows the standard mathematical order:</p>
+    <ol>
+      <li>Brackets <code>( )</code></li>
+      <li>Exponents <code>^</code></li>
+      <li>Multiplication and division <code>* /</code></li>
+      <li>Addition and subtraction <code>+ -</code></li>
+    </ol>
+    <p>So <code>=2+3*4</code> gives 14, because the multiplication is done first, whereas <code>=(2+3)*4</code> gives 20. When in doubt, add brackets: they cost nothing and make the intention explicit.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Relative references</h3>
+    <p>By default a cell reference is <strong>relative</strong>. Excel does not read <code>=B3*C3</code> in cell D3 as "B3 times C3" but as "the cell two to my left times the cell one to my left". When the formula is copied to another cell, that instruction is applied from the new position.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Formula is in</th><th>It reads</th></tr></thead>
+        <tbody>
+          <tr><td>D3</td><td><code>=B3*C3</code></td></tr>
+          <tr><td>D4 (copied down one row)</td><td><code>=B4*C4</code></td></tr>
+          <tr><td>D5 (copied down two rows)</td><td><code>=B5*C5</code></td></tr>
+          <tr><td>E3 (copied right one column)</td><td><code>=C3*D3</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>This behaviour is what allows one formula to be written once and filled down a thousand rows, each row calculating its own figures.</p>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>Press <kbd>Ctrl</kbd> + <kbd>`</kbd> (the key above Tab) to display every formula on the sheet instead of its result. It is the fastest way to audit a worksheet.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Common formula errors</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Error</th><th>Cause</th><th>Remedy</th></tr></thead>
+        <tbody>
+          <tr><td>#DIV/0!</td><td>Dividing by zero or by an empty cell</td><td>Supply the divisor</td></tr>
+          <tr><td>#NAME?</td><td>Excel does not recognise a word, usually a misspelt function</td><td>Check the spelling</td></tr>
+          <tr><td>#VALUE!</td><td>Arithmetic attempted on text</td><td>Check that the cells hold numbers</td></tr>
+          <tr><td>#REF!</td><td>The formula points to a cell that has been deleted</td><td>Undo, or rebuild the reference</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: revenue per product</h4>
+    <ol class="lesson-steps">
+      <li>Enter quantities in B3:B10 and unit prices in C3:C10.</li>
+      <li>In D3 type <code>=B3*C3</code> and press <kbd>Enter</kbd>.</li>
+      <li>Select D3 and double-click the fill handle. The formula is copied to D10.</li>
+      <li>Click D7 and read the Formula Bar: it shows <code>=B7*C7</code>, adjusted for its row.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>Every formula starts with <code>=</code>.</li>
+      <li>Brackets, then exponents, then multiplication and division, then addition and subtraction.</li>
+      <li>Relative references adjust to the new position when a formula is copied.</li>
+      <li>Build formulas from cell references rather than typed numbers.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>What does =10+6/2 return, and why?</summary><p>13. Division is carried out before addition, so 6/2 = 3 is calculated first.</p></details>
+    <details><summary>The formula =A2+B2 in C2 is copied to C5. What does it become?</summary><p>=A5+B5. Both references are relative, so each moves down three rows.</p></details>
+    <details><summary>You type A1*B1 and the cell shows exactly that text. What is missing?</summary><p>The equals sign. Without it Excel treats the entry as text.</p></details>
+  </section>
+</article>

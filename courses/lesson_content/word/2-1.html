@@ -1,0 +1,99 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 2.1</span>
+    <p class="lesson-lead">When information has more than one dimension, such as products against prices or tasks against dates, a paragraph cannot present it clearly. A <strong>table</strong> can. This lesson covers how to build a table, restructure it and format it so that the reader finds a value at a glance.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>select the most suitable method of creating a table;</li>
+      <li>add, delete, merge and split rows, columns and cells;</li>
+      <li>apply a table style and control its style options;</li>
+      <li>make a long table readable across pages and perform simple calculations in it.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The anatomy of a table</h3>
+    <dl class="lesson-terms">
+      <div><dt>Cell</dt><dd>A single box in the table, formed where a row meets a column. Each cell holds its own text and formatting.</dd></div>
+      <div><dt>Header row</dt><dd>The first row, containing the column titles. Word can format it differently and repeat it on every page.</dd></div>
+      <div><dt>Contextual tabs</dt><dd>When the cursor is inside a table, two extra tabs appear: <em>Table Design</em> for appearance and <em>Layout</em> for structure.</dd></div>
+    </dl>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Creating a table</h3>
+    <p>All methods begin at <span class="lesson-path">Insert &gt; Table</span>.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Method</th><th>How it works</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td>Grid selector</td><td>Drag across the grid of squares; the maximum is 10 columns by 8 rows</td><td>Small tables, created quickly</td></tr>
+          <tr><td>Insert Table dialog box</td><td>Type the exact number of columns and rows and choose the AutoFit behaviour</td><td>Larger tables or precise column widths</td></tr>
+          <tr><td>Convert Text to Table</td><td>Turns text separated by tabs or commas into a table</td><td>Data that has already been typed or pasted</td></tr>
+          <tr><td>Excel Spreadsheet</td><td>Embeds a working Excel sheet in the page</td><td>Tables that need real formulas</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The <strong>AutoFit</strong> setting decides how column widths behave: <em>Fixed Column Width</em> keeps them as set, <em>AutoFit to Contents</em> shrinks or grows each column around its text, and <em>AutoFit to Window</em> stretches the table across the page.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Entering data and changing the structure</h3>
+    <p>Press <kbd>Tab</kbd> to move to the next cell and <kbd>Shift</kbd> + <kbd>Tab</kbd> to move back. Pressing <kbd>Tab</kbd> in the last cell adds a new row, so a table grows as you type.</p>
+    <p>Structural changes are made on the <strong>Layout</strong> contextual tab:</p>
+    <ul>
+      <li><strong>Insert Above / Below / Left / Right</strong> adds a row or column next to the cursor.</li>
+      <li><strong>Delete</strong> removes cells, rows, columns or the whole table.</li>
+      <li><strong>Merge Cells</strong> joins the selected cells into one, typically for a title that spans several columns.</li>
+      <li><strong>Split Cells</strong> divides one cell into several.</li>
+      <li><strong>Distribute Rows / Columns</strong> makes the selected rows or columns equal in size.</li>
+    </ul>
+    <aside class="lesson-note is-warn"><strong>Common mistake</strong>Pressing <kbd>Delete</kbd> with a row selected clears the text but leaves the empty row. To remove the row itself use <span class="lesson-path">Layout &gt; Delete &gt; Delete Rows</span>.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Formatting with table styles</h3>
+    <p>The <strong>Table Design</strong> tab offers a gallery of ready-made styles such as <em>Grid Table 4 - Accent 1</em>. A style applies borders, shading and fonts in one step and keeps every table in the document consistent.</p>
+    <p>The <strong>Table Style Options</strong> check boxes tell the style which parts deserve special treatment. <em>Header Row</em> emphasises the first row, <em>Banded Rows</em> shades alternate rows so the eye can follow a line across, and <em>Total Row</em> emphasises the last row.</p>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>Align text to the left and numbers to the right. Right-aligned figures line up by unit, which lets the reader compare them instantly.</aside>
+    <!--figure:table-->
+  </section>
+
+  <section class="lesson-part">
+    <h3>Long tables and calculations</h3>
+    <p>If a table runs onto a second page, the reader loses the column titles. Click in the header row and choose <span class="lesson-path">Layout &gt; Repeat Header Rows</span>; Word then prints the header at the top of every page automatically.</p>
+    <p>For simple arithmetic, click in the cell that should hold the result and choose <span class="lesson-path">Layout &gt; Formula</span>. Word proposes <code>=SUM(ABOVE)</code>, which totals the numbers above the cell. Unlike Excel, the result does not recalculate by itself: select it and press <kbd>F9</kbd> after changing any figure.</p>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: a quarterly sales table</h4>
+    <ol class="lesson-steps">
+      <li>Choose <span class="lesson-path">Insert &gt; Table &gt; Insert Table</span> and request 5 columns and 6 rows.</li>
+      <li>Type the column titles in the first row, then the data, moving with <kbd>Tab</kbd>.</li>
+      <li>On <em>Table Design</em>, apply <em>Grid Table 4 - Accent 1</em> and tick <em>Header Row</em>, <em>Banded Rows</em> and <em>Total Row</em>.</li>
+      <li>In the last cell of each numeric column insert <code>=SUM(ABOVE)</code>.</li>
+      <li>Select the number cells and right-align them.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>The grid selector is quick but limited to 10 × 8; the Insert Table dialog box gives exact control.</li>
+      <li>Structure is changed on the Layout tab, appearance on the Table Design tab.</li>
+      <li>Repeat Header Rows keeps column titles visible on every page.</li>
+      <li>Word formulas such as <code>=SUM(ABOVE)</code> must be updated with <kbd>F9</kbd>.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>You need a table with 12 columns. Which creation method must you use, and why?</summary><p>The Insert Table dialog box, because the grid selector cannot go beyond 10 columns.</p></details>
+    <details><summary>What is the quickest way to add a row at the end of a table?</summary><p>Place the cursor in the last cell and press Tab.</p></details>
+    <details><summary>You change a figure and the total stays the same. What has been forgotten?</summary><p>Word does not recalculate automatically. Select the formula result and press F9 to update it.</p></details>
+  </section>
+</article>

@@ -1,0 +1,91 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 2.2</span>
+    <p class="lesson-lead">Typing the months of the year, numbering five hundred rows or splitting a column of full names by hand is slow and invites error. Excel can recognise the <strong>pattern</strong> in what you have typed and complete the rest. This lesson covers AutoFill, custom lists and Flash Fill.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>extend numbers, dates and text series with the fill handle;</li>
+      <li>create a custom list for a sequence your organisation uses;</li>
+      <li>use Flash Fill to split, join and reformat data.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The fill handle</h3>
+    <p>The <strong>fill handle</strong> is the small green square at the bottom-right corner of the selected cell or range. When the pointer is over it, the pointer becomes a thin black cross; dragging it copies the cell or continues its pattern. This is <strong>AutoFill</strong>.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>You select</th><th>Dragging produces</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Jan</td><td>Feb, Mar, Apr …</td><td>Month names are a built-in list</td></tr>
+          <tr><td>Monday</td><td>Tuesday, Wednesday …</td><td>Day names are a built-in list</td></tr>
+          <tr><td>01/03/2026</td><td>02/03/2026, 03/03/2026 …</td><td>Dates increase by one day</td></tr>
+          <tr><td>5</td><td>5, 5, 5 …</td><td>A single number is copied</td></tr>
+          <tr><td>5 and 10 (two cells)</td><td>15, 20, 25 …</td><td>Two values define the step</td></tr>
+          <tr><td>Quarter 1</td><td>Quarter 2, Quarter 3 …</td><td>Text ending in a number is incremented</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>To number a list 1, 2, 3, either type 1 and 2 in the first two cells and drag both, or drag a single 1 and then choose <em>Fill Series</em> from the <strong>AutoFill Options</strong> button that appears.</p>
+    <aside class="lesson-note is-tip"><strong>Tip</strong><strong>Double-click</strong> the fill handle instead of dragging. Excel fills down as far as the neighbouring column has data, which is ideal for long lists. <kbd>Ctrl</kbd> + <kbd>D</kbd> fills the cell above into the selected cells.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Custom lists</h3>
+    <p>If you frequently type the same sequence, such as branch names, departments or product lines, teach it to Excel once.</p>
+    <ol class="lesson-steps">
+      <li>Choose <span class="lesson-path">File &gt; Options &gt; Advanced</span> and, under General, click <strong>Edit Custom Lists</strong>.</li>
+      <li>Type the entries in order, one per line, or import them from a range of cells.</li>
+      <li>Click <strong>Add</strong>, then OK.</li>
+    </ol>
+    <p>From then on, typing any entry from the list and dragging the fill handle produces the rest. A custom list can also be used as a sort order, so that sizes sort as Small, Medium, Large rather than alphabetically.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Flash Fill</h3>
+    <p><strong>Flash Fill</strong> learns from an example. You type the result you want for the first row or two; Excel detects the pattern and fills in the remaining rows. Trigger it with <kbd>Ctrl</kbd> + <kbd>E</kbd>, or from <span class="lesson-path">Data &gt; Flash Fill</span>.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Task</th><th>Source</th><th>You type</th><th>Flash Fill completes</th></tr></thead>
+        <tbody>
+          <tr><td>Split</td><td>Amina Yusuf</td><td>Amina</td><td>the first name on every row</td></tr>
+          <tr><td>Join</td><td>John | Doe</td><td>john.doe@company.com</td><td>an email address for every person</td></tr>
+          <tr><td>Reformat</td><td>0912345678</td><td>091-234-5678</td><td>every phone number in that layout</td></tr>
+          <tr><td>Extract</td><td>INV-2026-0045</td><td>0045</td><td>the final number of every code</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Important</strong>Flash Fill writes fixed values, not formulas. If the source data changes later, the filled results do <em>not</em> update; run Flash Fill again. Always check several rows, because one unusual entry, such as a middle name, can mislead the pattern.</aside>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: building email addresses</h4>
+    <ol class="lesson-steps">
+      <li>Enter first names in column A and surnames in column B, with headings in row 1.</li>
+      <li>In C2 type the address for the first person, for example <em>john.doe@company.com</em>.</li>
+      <li>Click C3 and press <kbd>Ctrl</kbd> + <kbd>E</kbd>. Excel fills an address for every row.</li>
+      <li>Scan the results for names with unusual spellings and correct any that are wrong.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>The fill handle copies a value or continues a series; two cells define the step.</li>
+      <li>Double-clicking the fill handle fills down to the end of the adjacent data.</li>
+      <li>Custom lists teach Excel your own sequences.</li>
+      <li>Flash Fill (<kbd>Ctrl</kbd> + <kbd>E</kbd>) completes a pattern from an example, but its results are static.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>What is the keyboard shortcut for Flash Fill?</summary><p>Ctrl + E.</p></details>
+    <details><summary>You type 10 in one cell and 20 in the cell below, select both and drag down. What appears?</summary><p>30, 40, 50 and so on. The two cells tell Excel that the step is 10.</p></details>
+    <details><summary>After using Flash Fill you correct a surname in column B. Does the email address update?</summary><p>No. Flash Fill produces fixed values, so you must run it again or edit the address yourself.</p></details>
+  </section>
+</article>

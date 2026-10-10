@@ -1,0 +1,48 @@
+{% load i18n %}
+<div class="oe-demo oe-demo--excel" data-oe-demo="excel" role="img"
+  aria-label="{% trans 'Animated demo: entering data, adding a SUM formula and inserting a chart in Microsoft Excel' %}"
+  data-month="{% trans 'Month' %}"
+  data-sales="{% trans 'Sales' %}"
+  data-total="{% trans 'Total' %}"
+  data-months="{% trans 'Jan' %}|{% trans 'Feb' %}|{% trans 'Mar' %}|{% trans 'Apr' %}">
+  <div class="oe-app" aria-hidden="true">
+    <div class="oe-titlebar">
+      <span class="oe-app-icon">X</span>
+      <span class="oe-doc-name">Book1 - Excel</span>
+      <span class="oe-win"><i class="fa-solid fa-minus"></i><i class="fa-regular fa-square"></i><i class="fa-solid fa-xmark"></i></span>
+    </div>
+    <div class="oe-tabs">
+      <span>File</span><span class="is-active">Home</span><span>Insert</span><span>Formulas</span><span>Data</span>
+    </div>
+    <div class="oe-ribbon">
+      <span class="oe-select" style="width: 8em">Calibri <i class="fa-solid fa-chevron-down"></i></span>
+      <span class="oe-select">11 <i class="fa-solid fa-chevron-down"></i></span>
+      <span class="oe-sep"></span>
+      <span class="oe-btn" data-oe="bold"><b>B</b></span>
+      <span class="oe-btn"><em>I</em></span>
+      <span class="oe-btn" data-oe="fill"><i class="fa-solid fa-fill-drip"></i></span>
+      <span class="oe-btn"><i class="fa-solid fa-border-all"></i></span>
+      <span class="oe-sep"></span>
+      <span class="oe-btn" data-oe="sum"><b>&Sigma;</b> AutoSum</span>
+      <span class="oe-btn" data-oe="chartbtn"><i class="fa-solid fa-chart-bar"></i> Chart</span>
+    </div>
+    <div class="oe-fxbar">
+      <span class="oe-namebox" data-oe="name">A1</span>
+      <span class="oe-fx-label">fx</span>
+      <span class="oe-fx" data-oe="fx"></span>
+    </div>
+    <div class="oe-sheet">
+      <div class="oe-grid" data-oe="grid"></div>
+      <div class="oe-chart" data-oe="chart">
+        <div class="oe-chart-title">{% trans "Sales" %}</div>
+        <div class="oe-bars" data-oe="bars"></div>
+        <div class="oe-bar-labels" data-oe="labels"></div>
+      </div>
+    </div>
+    <div class="oe-status">
+      <span>Sheet1</span>
+      <span data-oe="stat"></span>
+    </div>
+    <div class="oe-cursor"><i class="fa-solid fa-mouse-pointer"></i></div>
+  </div>
+</div>

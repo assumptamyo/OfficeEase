@@ -1,0 +1,57 @@
+{% load i18n %}
+<div class="oe-demo oe-demo--ppt" data-oe-demo="ppt" role="img"
+  aria-label="{% trans 'Animated demo: building slides, applying a design and running a slide show in Microsoft PowerPoint' %}"
+  data-title="{% trans 'Our Vision 2026' %}"
+  data-sub="{% trans 'Growing skills, growing business' %}"
+  data-title2="{% trans 'Our Goals' %}"
+  data-bullets="{% trans 'Train every team' %}|{% trans 'Share clear reports' %}|{% trans 'Present with confidence' %}">
+  <div class="oe-app" aria-hidden="true">
+    <div class="oe-titlebar">
+      <span class="oe-app-icon">P</span>
+      <span class="oe-doc-name">Presentation1 - PowerPoint</span>
+      <span class="oe-win"><i class="fa-solid fa-minus"></i><i class="fa-regular fa-square"></i><i class="fa-solid fa-xmark"></i></span>
+    </div>
+    <div class="oe-tabs">
+      <span>File</span><span class="is-active">Home</span><span>Insert</span><span>Design</span><span>Transitions</span>
+    </div>
+    <div class="oe-ribbon">
+      <span class="oe-btn" data-oe="add"><i class="fa-solid fa-plus"></i> New Slide</span>
+      <span class="oe-sep"></span>
+      <span class="oe-btn"><i class="fa-solid fa-font"></i></span>
+      <span class="oe-btn"><i class="fa-solid fa-shapes"></i></span>
+      <span class="oe-btn" data-oe="chartbtn"><i class="fa-solid fa-chart-bar"></i></span>
+      <span class="oe-sep"></span>
+      <span class="oe-swatch" data-oe="plain"></span>
+      <span class="oe-swatch oe-swatch--blue"></span>
+      <span class="oe-swatch oe-swatch--orange" data-oe="theme"></span>
+      <span class="oe-sep"></span>
+      <span class="oe-btn" data-oe="play"><i class="fa-solid fa-play"></i> Slide Show</span>
+    </div>
+    <div class="oe-ppt-body">
+      <div class="oe-thumbs">
+        <div class="oe-thumb is-active" data-oe="thumb1">1<i></i></div>
+        <div class="oe-thumb is-hidden" data-oe="thumb2">2<i></i></div>
+      </div>
+      <div class="oe-stage">
+        <div class="oe-slides">
+          <div class="oe-slide is-current" data-oe="slide1">
+            <div class="oe-ph oe-s-title is-empty" data-oe="title" data-ph="{% trans 'Click to add title' %}"></div>
+            <div class="oe-ph oe-s-sub is-empty" data-oe="sub" data-ph="{% trans 'Click to add subtitle' %}"></div>
+          </div>
+          <div class="oe-slide" data-oe="slide2">
+            <div class="oe-ph oe-s-title2 is-empty" data-oe="title2" data-ph="{% trans 'Click to add title' %}"></div>
+            <div class="oe-s-row">
+              <ul class="oe-s-list" data-oe="list"></ul>
+              <div class="oe-shape" data-oe="shape"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="oe-status">
+      <span>Slide <span data-oe="num">1</span> / <span data-oe="total">1</span></span>
+      <span>100%</span>
+    </div>
+    <div class="oe-cursor"><i class="fa-solid fa-mouse-pointer"></i></div>
+  </div>
+</div>

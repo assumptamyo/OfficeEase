@@ -1,0 +1,94 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 3.2</span>
+    <p class="lesson-lead">Relative references are convenient until a formula must always point to one particular cell, such as a tax rate. This lesson introduces the <strong>absolute reference</strong>, which fixes a cell in place, and the core <strong>functions</strong> that summarise a range of numbers.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>decide when a reference must be absolute and create one with <kbd>F4</kbd>;</li>
+      <li>describe the structure of a function and its arguments;</li>
+      <li>use SUM, AVERAGE, MIN, MAX, COUNT and COUNTA correctly.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The problem absolute references solve</h3>
+    <p>Suppose a tax rate of 8% is stored in cell C1 and the revenue for each product is in D3:D10. In E3 you write <code>=D3*C1</code>, which is correct. Copied down one row it becomes <code>=D4*C2</code>: the revenue reference moved correctly, but the tax reference moved too and now points at an empty cell.</p>
+    <p>A dollar sign <strong>locks</strong> the part of the reference it precedes. <code>$C$1</code> means "always column C, always row 1", wherever the formula is copied. The correct formula is <code>=D3*$C$1</code>.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The four reference types</h3>
+    <p>While typing or editing a reference, press <kbd>F4</kbd> to cycle through the four forms.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Reference</th><th>Type</th><th>When copied</th></tr></thead>
+        <tbody>
+          <tr><td>A1</td><td>Relative</td><td>Column and row both change</td></tr>
+          <tr><td>$A$1</td><td>Absolute</td><td>Nothing changes</td></tr>
+          <tr><td>A$1</td><td>Mixed (row locked)</td><td>The column changes, the row stays 1</td></tr>
+          <tr><td>$A1</td><td>Mixed (column locked)</td><td>The row changes, the column stays A</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-tip"><strong>Rule of thumb</strong>Ask: "When I copy this formula, should this reference move with it?" If yes, leave it relative. If it must stay on one fixed cell, such as a rate, a target or an exchange rate, make it absolute.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>What a function is</h3>
+    <p>A <strong>function</strong> is a ready-made calculation with a name. It is written as the name followed by its <strong>arguments</strong> in brackets:</p>
+    <p><code>=SUM(B3:B10)</code></p>
+    <p>Here SUM is the function and the range B3:B10 is its argument. Several arguments are separated by commas, as in <code>=SUM(B3:B10, D3:D10)</code>. As you type a function name Excel offers a list of matches; press <kbd>Tab</kbd> to accept one.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The core functions</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Function</th><th>Returns</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>SUM</td><td>The total of the numbers</td><td><code>=SUM(E3:E10)</code></td></tr>
+          <tr><td>AVERAGE</td><td>The arithmetic mean</td><td><code>=AVERAGE(E3:E10)</code></td></tr>
+          <tr><td>MIN</td><td>The smallest number</td><td><code>=MIN(E3:E10)</code></td></tr>
+          <tr><td>MAX</td><td>The largest number</td><td><code>=MAX(E3:E10)</code></td></tr>
+          <tr><td>COUNT</td><td>How many cells contain <strong>numbers</strong></td><td><code>=COUNT(E3:E10)</code></td></tr>
+          <tr><td>COUNTA</td><td>How many cells are <strong>not blank</strong>, whatever they contain</td><td><code>=COUNTA(A3:A10)</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The difference between COUNT and COUNTA matters. In a column containing 10, 20, "absent" and 40, COUNT returns 3 because it counts only the numeric cells, while COUNTA returns 4 because it counts every cell that is not empty. Use COUNTA to count names; use COUNT to count scores.</p>
+    <aside class="lesson-note is-warn"><strong>Common mistake</strong>AVERAGE ignores empty cells but includes zeros. A blank cell for an absent student and a zero for a failed one give different averages. Decide which you mean.</aside>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>Click below a column of numbers and press <kbd>Alt</kbd> + <kbd>=</kbd>. <strong>AutoSum</strong> writes the SUM formula and guesses the range for you.</aside>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: sales tax on each line</h4>
+    <ol class="lesson-steps">
+      <li>Type the tax rate <em>0.08</em> in cell C1.</li>
+      <li>In E3 type <code>=D3*C1</code>, then with the cursor on C1 press <kbd>F4</kbd> once. The formula becomes <code>=D3*$C$1</code>.</li>
+      <li>Press <kbd>Enter</kbd> and fill the formula down to E10.</li>
+      <li>Click E10: it reads <code>=D10*$C$1</code>. The revenue reference moved; the tax reference did not.</li>
+      <li>In E11 enter <code>=SUM(E3:E10)</code> for the total tax collected.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>A dollar sign locks the column, the row or both; <kbd>F4</kbd> cycles through the options.</li>
+      <li>Use an absolute reference for any single cell that many formulas depend on.</li>
+      <li>A function is a name followed by arguments in brackets.</li>
+      <li>COUNT counts numeric cells only; COUNTA counts all non-blank cells.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>Which key converts A1 into $A$1 while you are editing a formula?</summary><p>F4. Pressing it again cycles through A$1, $A1 and back to A1.</p></details>
+    <details><summary>A range contains 5, 8, "N/A" and an empty cell. What do COUNT and COUNTA return?</summary><p>COUNT returns 2, the two numbers. COUNTA returns 3, the three cells that are not blank.</p></details>
+    <details><summary>The formula =B2*$F$1 is copied from C2 to C6. What does it become?</summary><p>=B6*$F$1. The relative reference moves down four rows; the absolute reference stays on F1.</p></details>
+  </section>
+</article>

@@ -1,0 +1,37 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Guided practice &middot; Module 3</span>
+    <p class="lesson-lead">Apply this module by building a small sales sheet that uses a relative formula, an absolute reference and a function together.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Before you start</h3>
+    <ul>
+      <li><strong>You need:</strong> A blank workbook.</li>
+      <li><strong>Time:</strong> about 15 minutes.</li>
+      <li>Work through the steps in the real application; reading them is not enough.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Steps</h3>
+    <ol class="lesson-steps">
+      <li>In C1 enter the sales tax rate <em>0.08</em> and format it as a percentage.</li>
+      <li>Enter sales quantities in B3:B10 and unit prices in C3:C10.</li>
+      <li>In D3 calculate revenue with <code>=B3*C3</code> and fill the formula down to D10.</li>
+      <li>In E3 calculate tax with <code>=D3*$C$1</code>, pressing <kbd>F4</kbd> to lock C1, and fill it down to E10.</li>
+      <li>In E11 enter <code>=SUM(E3:E10)</code> to find the total tax collected.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Check your result</h3>
+    <p>Your work is correct if:</p>
+    <ul>
+      <li>D10 reads <code>=B10*C10</code>: the relative references moved.</li>
+      <li>E10 reads <code>=D10*$C$1</code>: the tax rate stayed fixed.</li>
+      <li>Changing C1 to 0.10 updates every tax amount and the total at once.</li>
+    </ul>
+    <aside class="lesson-note is-tip"><strong>Go further</strong>Add the average, highest and lowest revenue beneath the table with AVERAGE, MAX and MIN.</aside>
+  </section>
+</article>

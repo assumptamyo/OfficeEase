@@ -23,3 +23,6 @@ sent_emails/
 .DS_Store
 Thumbs.db
 .vscode/settings.json
+
+# Local database backups
+db.backup-*.sqlite3

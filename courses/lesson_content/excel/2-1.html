@@ -1,0 +1,102 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 2.1</span>
+    <p class="lesson-lead">Excel treats the number 0.25, the percentage 25% and the text "25%" as three different things. Entering data correctly, and understanding that a <strong>number format</strong> changes only how a value looks, is the foundation of every reliable spreadsheet.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>enter and edit data efficiently from the keyboard;</li>
+      <li>recognise how Excel classifies text, numbers and dates;</li>
+      <li>apply number formats and explain the difference between Currency and Accounting.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Entering and editing data</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Key</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td><kbd>Enter</kbd></td><td>Confirms the entry and moves down one cell</td></tr>
+          <tr><td><kbd>Tab</kbd></td><td>Confirms the entry and moves right one cell</td></tr>
+          <tr><td><kbd>Shift</kbd> + <kbd>Enter</kbd> / <kbd>Tab</kbd></td><td>Confirms and moves in the opposite direction</td></tr>
+          <tr><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td>Enters the same value in every selected cell</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>Cancels the entry and restores the previous contents</td></tr>
+          <tr><td><kbd>F2</kbd></td><td>Edits the active cell without retyping it</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>Type across a row with <kbd>Tab</kbd>, then press <kbd>Enter</kbd> at the end. Excel returns to the first column of the next row, so a table can be typed without touching the mouse.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>How Excel classifies data</h3>
+    <dl class="lesson-terms">
+      <div><dt>Text</dt><dd>Anything Excel cannot read as a number. Text is aligned to the <strong>left</strong> and cannot be used in arithmetic.</dd></div>
+      <div><dt>Number</dt><dd>A value that can be calculated. Numbers are aligned to the <strong>right</strong>.</dd></div>
+      <div><dt>Date and time</dt><dd>Stored as a number, with 1 representing 1 January 1900, and displayed as a date. This is why one date can be subtracted from another to count the days between them.</dd></div>
+    </dl>
+    <aside class="lesson-note is-warn"><strong>Common mistake</strong>A number that sits on the left of its cell has been stored as text, often because it was typed with a space or an apostrophe. It will be ignored by SUM. Alignment is the quickest diagnostic you have.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Number formats</h3>
+    <p>A number format changes the <strong>appearance</strong> of a value, never the value itself. A cell containing 0.5 can be shown as 0.5, 50% or $0.50; calculations always use 0.5. Choose a format from the <strong>Number</strong> group on the Home tab, or press <kbd>Ctrl</kbd> + <kbd>1</kbd> for the full Format Cells dialog box.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Format</th><th>1234.5 appears as</th><th>Use it for</th></tr></thead>
+        <tbody>
+          <tr><td>General</td><td>1234.5</td><td>The default; no specific formatting</td></tr>
+          <tr><td>Number</td><td>1,234.50</td><td>Quantities, with a chosen number of decimals</td></tr>
+          <tr><td>Currency</td><td>$1,234.50</td><td>Prices and amounts in running text</td></tr>
+          <tr><td>Accounting</td><td>$&nbsp;&nbsp;&nbsp;1,234.50</td><td>Columns of money in financial statements</td></tr>
+          <tr><td>Percentage</td><td>123450%</td><td>Rates and proportions (0.08 shows as 8%)</td></tr>
+          <tr><td>Short Date</td><td>18/05/1903</td><td>Dates in compact form</td></tr>
+          <tr><td>Text</td><td>1234.5 (left-aligned)</td><td>Codes that must not be calculated, such as phone numbers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Currency versus Accounting</h3>
+    <p>Both add a currency symbol and two decimal places, but they place the symbol differently.</p>
+    <ul>
+      <li><strong>Currency</strong> puts the symbol <em>directly next to the number</em>.</li>
+      <li><strong>Accounting</strong> aligns the symbols at the <em>far left</em> of the cell and the decimal points in a straight column. It shows zero as a dash and negative amounts in brackets.</li>
+    </ul>
+    <p>Accounting is the convention in financial reports because a column of figures becomes easy to scan and compare.</p>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>If a cell fills with <code>#####</code>, nothing is wrong with the value. The column is too narrow to display it; double-click the right edge of the column heading to widen it.</aside>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: a price list</h4>
+    <ol class="lesson-steps">
+      <li>Type <em>Item</em>, <em>Price</em> and <em>Discount</em> across row 1 using <kbd>Tab</kbd>.</li>
+      <li>Enter three items with prices such as 1200 and discounts such as 0.1.</li>
+      <li>Select the prices and apply the <em>Accounting</em> format.</li>
+      <li>Select the discounts and apply <em>Percentage</em>; 0.1 is displayed as 10%.</li>
+      <li>Click a discount cell: the Formula Bar still shows the stored value.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li><kbd>Enter</kbd> moves down, <kbd>Tab</kbd> moves right, <kbd>Ctrl</kbd> + <kbd>Enter</kbd> fills the selection.</li>
+      <li>Text aligns left and numbers align right; dates are numbers in disguise.</li>
+      <li>A number format changes the display, not the stored value.</li>
+      <li>Currency keeps the symbol beside the number; Accounting aligns the symbols at the left edge.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>What is the visible difference between the Currency and Accounting formats?</summary><p>Currency places the symbol directly next to the number. Accounting aligns the symbols at the far left of the cell and lines up the decimal points.</p></details>
+    <details><summary>A cell shows 15% and you multiply it by 200. What is the result, and why?</summary><p>30. The stored value is 0.15; the percentage format only changes how it is displayed.</p></details>
+    <details><summary>A column of figures is aligned to the left and SUM returns 0. What has happened?</summary><p>The figures are stored as text, not numbers, so they are left out of the calculation.</p></details>
+  </section>
+</article>

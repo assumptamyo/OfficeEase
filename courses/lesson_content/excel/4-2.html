@@ -1,0 +1,99 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 4.2</span>
+    <p class="lesson-lead">Data becomes information when it is put in order and reduced to what matters. <strong>Sorting</strong> rearranges the rows; <strong>filtering</strong> hides the rows you do not need. Neither changes the data itself, and together they answer most everyday business questions.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>sort a list by one column or by several levels;</li>
+      <li>filter by values, by text, number and date conditions;</li>
+      <li>use slicers to filter a table visually;</li>
+      <li>explain the difference between sorting and filtering.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Sorting on one column</h3>
+    <p>Click any cell in the column you want to sort by and choose <span class="lesson-path">Data &gt; Sort A to Z</span> or <span class="lesson-path">Sort Z to A</span>. The wording adapts to the data: text sorts alphabetically, numbers from <em>Smallest to Largest</em>, and dates from <em>Oldest to Newest</em>.</p>
+    <aside class="lesson-note is-warn"><strong>Important</strong>Select a <em>single cell</em>, not a whole column, before sorting. If you select one column and sort it alone, its values are rearranged while the other columns stay still, and every row of your data is silently scrambled. If Excel asks, always choose <em>Expand the selection</em>.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Multi-level sorting</h3>
+    <p>Often one sort is not enough: you want staff grouped by department and, within each department, ordered by salary. This is a <strong>multi-level sort</strong>.</p>
+    <ol class="lesson-steps">
+      <li>Click inside the data and choose <span class="lesson-path">Data &gt; Sort</span>.</li>
+      <li>In the first row set <em>Sort by</em> to Department and <em>Order</em> to A to Z.</li>
+      <li>Click <strong>Add Level</strong>. Set <em>Then by</em> to Salary and <em>Order</em> to Largest to Smallest.</li>
+      <li>Click OK. Excel applies the levels from top to bottom.</li>
+    </ol>
+    <p>In the Order list, <strong>Custom List</strong> sorts by a sequence you define, such as Low, Medium, High, or the months of the year, instead of alphabetically. You can also sort by cell colour or font colour.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Filtering</h3>
+    <p>A filter displays only the rows that meet a condition and <strong>hides</strong> the rest. Hidden rows are not deleted. Turn the filter arrows on or off with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> or <span class="lesson-path">Data &gt; Filter</span>; an Excel Table has them already.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Filter type</th><th>Examples of conditions</th></tr></thead>
+        <tbody>
+          <tr><td>By value</td><td>Tick or untick items in the list, such as North and East</td></tr>
+          <tr><td>Text Filters</td><td>Begins with, Contains, Does not equal</td></tr>
+          <tr><td>Number Filters</td><td>Greater than, Between, Top 10, Above Average</td></tr>
+          <tr><td>Date Filters</td><td>This Month, Last Quarter, Between two dates</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>You can tell a filter is active because the row numbers turn blue and skip values, and the arrow on the filtered column becomes a funnel. Filters on several columns combine: Region = North <em>and</em> Sales greater than 5,000. To remove them, choose <span class="lesson-path">Data &gt; Clear</span>.</p>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>An ordinary SUM adds hidden rows too. To total only the visible rows, use the table's Total Row or the function <code>=SUBTOTAL(109, E2:E100)</code>.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Slicers</h3>
+    <p>A <strong>slicer</strong> is a panel of buttons that filters a table. Click in the table and choose <span class="lesson-path">Table Design &gt; Insert Slicer</span>, then tick the column, for example Region. Clicking a button filters the table to that value; hold <kbd>Ctrl</kbd> to select several. Slicers make the current filter visible at a glance, which suits dashboards and reports used by other people.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Sorting and filtering compared</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th></th><th>Sort</th><th>Filter</th></tr></thead>
+        <tbody>
+          <tr><td>What it does</td><td>Changes the order of the rows</td><td>Hides rows that do not match</td></tr>
+          <tr><td>Rows shown</td><td>All of them</td><td>Only the matching ones</td></tr>
+          <tr><td>Answers</td><td>"Which is highest? Which is first?"</td><td>"Which ones meet this condition?"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: stock that needs attention</h4>
+    <ol class="lesson-steps">
+      <li>In <em>InventoryTable</em>, open the filter on Quantity and untick 0 to hide products that are out of stock.</li>
+      <li>Open <span class="lesson-path">Data &gt; Sort</span>. Sort by Region (A to Z), then add a level for Sales Amount (Largest to Smallest).</li>
+      <li>Insert a slicer for Region and click <em>North</em> to see that region alone.</li>
+      <li>Read the Total Row: it now reports the figures for the visible rows only.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>Sorting reorders rows; filtering hides rows. Neither deletes data.</li>
+      <li>Use Data &gt; Sort and Add Level for a multi-level sort.</li>
+      <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> toggles the filter arrows.</li>
+      <li>Slicers filter a table with visible buttons.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>Which shortcut turns the AutoFilter arrows on or off?</summary><p>Ctrl + Shift + L.</p></details>
+    <details><summary>You filter a list to show only one department. Have the other rows been deleted?</summary><p>No. They are hidden and reappear when the filter is cleared.</p></details>
+    <details><summary>How do you sort by Region and, within each region, by Sales from largest to smallest?</summary><p>Open Data &gt; Sort, sort by Region A to Z, click Add Level, then sort by Sales Largest to Smallest.</p></details>
+  </section>
+</article>

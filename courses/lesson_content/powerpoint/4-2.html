@@ -1,0 +1,99 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 4.2</span>
+    <p class="lesson-lead">An <strong>animation</strong> controls when and how a single object appears, changes or leaves while a slide is on screen. Its real purpose is not decoration but <strong>pacing</strong>: revealing information at the moment the speaker reaches it, so the audience is never reading ahead.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>name the four categories of animation and their purpose;</li>
+      <li>set the start, duration and delay of an animation;</li>
+      <li>sequence several animations with the Animation Pane;</li>
+      <li>copy animations with the Animation Painter and use them with restraint.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The four categories</h3>
+    <p>Select an object and open the gallery on the <strong>Animations</strong> tab. The effects are colour-coded.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Category</th><th>Colour</th><th>Purpose</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>Entrance</td><td>Green</td><td>How an object <strong>appears</strong> on the slide</td><td>Appear, Fade, Fly In, Wipe</td></tr>
+          <tr><td>Emphasis</td><td>Yellow</td><td>Draws attention to an object <strong>already visible</strong></td><td>Pulse, Spin, Grow/Shrink</td></tr>
+          <tr><td>Exit</td><td>Red</td><td>How an object <strong>leaves</strong> the slide</td><td>Disappear, Fade, Fly Out</td></tr>
+          <tr><td>Motion Paths</td><td>Lines</td><td>Moves an object along a route</td><td>Lines, Arcs, Custom Path</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>To give one object a second effect, for example an entrance followed by an exit, use <span class="lesson-path">Add Animation</span>. Choosing from the main gallery again would <em>replace</em> the first effect.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Timing</h3>
+    <p>The <strong>Timing</strong> group determines when each animation runs.</p>
+    <dl class="lesson-terms">
+      <div><dt>Start: On Click</dt><dd>The animation waits for the presenter to click or press a key. Use it when you want to control the moment of each reveal.</dd></div>
+      <div><dt>Start: With Previous</dt><dd>The animation runs <strong>at exactly the same moment</strong> as the animation before it. Use it to make several objects move together.</dd></div>
+      <div><dt>Start: After Previous</dt><dd>The animation runs automatically as soon as the previous one has finished. Use it to chain effects without clicking.</dd></div>
+      <div><dt>Duration</dt><dd>How long the effect takes. Around 0.5 seconds feels brisk and professional.</dd></div>
+      <div><dt>Delay</dt><dd>A pause before the effect begins, measured from its start trigger.</dd></div>
+    </dl>
+    <p>Small numbers beside objects on the slide show the click on which each animation runs. Animations set to With Previous or After Previous share the number of the click that triggers them.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The Animation Pane</h3>
+    <p>Choose <span class="lesson-path">Animations &gt; Animation Pane</span> to see every animation on the slide as a list, in running order, with a bar showing its timing.</p>
+    <ul>
+      <li><strong>Reorder</strong> by dragging an entry up or down.</li>
+      <li><strong>Adjust timing</strong> by dragging the ends of a bar.</li>
+      <li><strong>Open Effect Options</strong> by double-clicking an entry, for settings such as sound, or dimming text after it has been shown.</li>
+      <li><strong>Play From</strong> previews the sequence.</li>
+    </ul>
+    <p>For a bulleted list, <span class="lesson-path">Effect Options &gt; By Paragraph</span> makes each point appear separately, which is the standard technique for revealing a list one item at a time.</p>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>The <strong>Animation Painter</strong> copies the animation of one object to another, in the same way that the Format Painter copies formatting. Double-click it to apply the animation to several objects in turn.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Using animation with judgement</h3>
+    <ul>
+      <li>Animate only when it helps understanding: revealing steps in order, or building up a diagram.</li>
+      <li>Prefer simple effects such as Fade, Appear and Wipe. Bouncing and spinning effects distract.</li>
+      <li>Use the same effect for the same kind of object throughout.</li>
+      <li>Keep effects fast. An audience waiting for text to arrive loses patience quickly.</li>
+    </ul>
+    <aside class="lesson-note is-warn"><strong>Common mistake</strong>Setting every point to On Click and then having to click twenty times on one slide. Reveal points on click, but group the supporting details With Previous or After Previous.</aside>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: revealing a four-point list</h4>
+    <ol class="lesson-steps">
+      <li>Select the text placeholder containing four bullet points and apply the <em>Fade</em> entrance.</li>
+      <li>Open <em>Effect Options</em> and choose <em>By Paragraph</em>. The numbers 1 to 4 appear beside the points.</li>
+      <li>Leave <em>Start</em> as On Click so that each point appears when you are ready to discuss it.</li>
+      <li>Select the icon beside the list, apply <em>Fade</em> and set its Start to <em>With Previous</em>, so that it arrives together with the first point.</li>
+      <li>Open the Animation Pane and click <em>Play From</em> to check the sequence.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>Entrance (green), Emphasis (yellow), Exit (red) and Motion Paths are the four categories.</li>
+      <li>On Click waits for the presenter; With Previous runs at the same moment as the previous animation; After Previous follows it.</li>
+      <li>The Animation Pane lists, reorders and times the animations on a slide.</li>
+      <li>Animation should control pacing, not decorate.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>Which timing setting makes an animation run at exactly the same moment as the one before it?</summary><p>With Previous.</p></details>
+    <details><summary>Which category of animation would you use to draw attention to a figure that is already on the slide?</summary><p>Emphasis, shown in yellow, such as Pulse or Grow/Shrink.</p></details>
+    <details><summary>You want an object to fade in and later fade out. Why must you use Add Animation for the second effect?</summary><p>Choosing an effect from the main gallery replaces the existing animation. Add Animation gives the object an additional one.</p></details>
+  </section>
+</article>

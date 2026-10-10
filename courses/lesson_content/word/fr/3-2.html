@@ -1,0 +1,102 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Leçon 3.2</span>
+    <p class="lesson-lead">L'onglet <strong>Mise en page</strong> définit la page physique : sa taille, ses marges et la façon dont le texte est réparti sur celle-ci. Le concept central de cette leçon est la <strong>section</strong>, le mécanisme qui permet à un document de contenir des pages avec des mises en page différentes.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Objectifs d'apprentissage</h3>
+    <p>À la fin de cette leçon, vous serez capable de :</p>
+    <ul>
+      <li>définir les marges, l'orientation et le format du papier, y compris une gouttière pour la reliure ;</li>
+      <li>distinguer un saut de page d'un saut de section et choisir le bon type ;</li>
+      <li>donner à une page une orientation différente du reste du document ;</li>
+      <li>organisez le texte en colonnes et contrôlez où se termine une colonne.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Mise en page</h3>
+    <p>Le groupe <strong>Mise en page</strong> contient les trois paramètres qui définissent une page.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Paramètre</th><th>Possibilités</th><th>Remarques</th></tr></thead>
+        <tbody>
+          <tr><td>Marges</td><td>Marges normales, étroites, modérées, larges et personnalisées</td><td>La normale est de 1 pouce (2,54 cm) sur les quatre côtés</td></tr>
+          <tr><td>Orientation</td><td>Portrait, Paysage</td><td>Le paysage convient aux tableaux et graphiques larges</td></tr>
+          <tr><td>Taille</td><td>A4, Lettre, Légal, Exécutif et autres</td><td>Le format A4 est la norme dans la plupart des pays ; Lettre en Amérique du Nord</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Une <strong>marge de gouttière</strong> est un espace supplémentaire ajouté au bord de la reliure de la page. Si un rapport est relié à spirale ou agrafé sur la gauche, une gouttière d'environ 0,5 pouce empêche la reliure de recouvrir le texte. Définissez-le sous <span class="lesson-path">Marges > Marges personnalisées</span>.</p>
+    <!--figure:margins-->
+  </section>
+
+  <section class="lesson-part">
+    <h3>Sauts de page et sauts de section</h3>
+    <p>Les deux sont insérés à partir de <span class="lesson-path">Mise en page > Pauses</span>, et ils se ressemblent à l'écran, mais ils font des tâches très différentes.</p>
+    <dl class="lesson-terms">
+      <div><dt>Saut de page</dt><dd>Pousse le texte suivant en haut de la page suivante. Les paramètres de la page restent exactement les mêmes. Raccourci : <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.</dd></div>
+      <div><dt>Saut de section</dt><dd>Divise le document en <strong>sections</strong> indépendantes. Chaque section peut avoir ses propres marges, orientation, colonnes, en-têtes, pieds de page et numérotation des pages.</dd></div>
+    </dl>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Type de saut de section</th><th>Où commence la nouvelle section</th><th>Utilisation typique</th></tr></thead>
+        <tbody>
+          <tr><td>Page suivante</td><td>Sur la page suivante</td><td>Une page paysage ou un nouveau chapitre avec son propre en-tête</td></tr>
+          <tr><td>Continu</td><td>Sur la même page</td><td>Changer le nombre de colonnes en bas d'une page</td></tr>
+          <tr><td>Page paire / Page impaire</td><td>Sur la page suivante paire ou impaire</td><td>Livres dont les chapitres s'ouvrent toujours sur une page de droite</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Erreur courante</strong>Changing the orientation and finding that the <em>whole</em> document has turned landscape. Orientation applies to a section, and a document with no section breaks is one single section. Insert the breaks first, then change the orientation.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Différentes mises en page dans un seul document</h3>
+    <p>Pour transformer une seule page en paysage au milieu d'un rapport portrait, isolez-la dans une section qui lui est propre :</p>
+    <ol class="lesson-steps">
+      <li>Cliquez à la fin de la page avant celle qui doit changer et insérez <span class="lesson-path">Pauses > Page suivante</span>.</li>
+      <li>Cliquez à la fin de la page qui doit être en mode paysage et insérez un autre saut <em>Page suivante</em>.</li>
+      <li>Cliquez n'importe où dans la section du milieu et choisissez <span class="lesson-path">Orientation > Paysage</span>.</li>
+    </ol>
+    <p>Le même principe donne à chaque chapitre son propre en-tête. Ouvrez l'en-tête de la nouvelle section et désactivez <strong>Lien vers le précédent</strong> dans l'onglet En-tête et pied de page ; sinon, la section répète simplement l'en-tête de celle qui la précède.</p>
+    <aside class="lesson-note is-tip"><strong>Astuce</strong>Activez les marques ¶ avec <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd> pour voir où se trouvent les pauses. Les sauts de section stockent la disposition du texte <em>au-dessus</em> d'eux, donc en supprimer un fait que ce texte adopte la disposition de la section ci-dessous.</aside>
+    <!--figure:sections-->
+  </section>
+
+  <section class="lesson-part">
+    <h3>Colonnes</h3>
+    <p>Les newsletters et les brochures utilisent des colonnes car les lignes courtes sont plus faciles à lire. Choisissez <span class="lesson-path">Mise en page > Colonnes</span> et choisissez Un, Deux, Trois, Gauche ou Droite. <em>Plus de colonnes</em> vous permet de définir des largeurs et des espacements exacts et d'ajouter une <strong>ligne entre</strong> les colonnes.</p>
+    <p>Le texte remplit la première colonne avant de passer à la suivante. Pour terminer une colonne plus tôt, insérez un <strong>saut de colonne</strong> avec <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>.</p>
+    <p>Pour conserver un titre en pleine largeur au-dessus d'un article à deux colonnes, placez un saut de section <em>Continu</em> après le titre et appliquez deux colonnes uniquement à la section située en dessous.</p>
+    <!--figure:columns-->
+  </section>
+
+  <section class="lesson-example">
+    <h4>Exemple concret : une newsletter de trois pages</h4>
+    <ol class="lesson-steps">
+      <li>Définissez les marges sur <em>Modéré</em> et le format du papier sur A4.</li>
+      <li>Après la page de garde, insérez un saut de section <em>Page suivante</em> ; après la page du graphique, insérez-en une autre.</li>
+      <li>Cliquez dans la section du graphique et définissez l'orientation sur Paysage.</li>
+      <li>Dans la dernière section, tapez le titre, insérez un saut <em>Continu</em>, puis appliquez deux colonnes séparées par une ligne.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Points clés à retenir</h3>
+    <ul>
+      <li>Un saut de page démarre une nouvelle page ; un saut de section démarre un nouvel ensemble de règles de mise en page.</li>
+      <li>L'orientation, les marges, les colonnes, les en-têtes et la numérotation sont autant de propriétés d'une section.</li>
+      <li>Utilisez les sauts de page suivante pour isoler une page et un saut continu pour changer de colonne sur la même page.</li>
+      <li>Une marge de gouttière réserve un espace pour la reliure.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Vérifiez votre compréhension</h3>
+    <details><summary>Quelle est la différence entre appuyer sur Ctrl + Entrée et insérer un saut de section Page suivante ?</summary><p>Les deux déplacent le texte vers une nouvelle page, mais seul le saut de section crée une nouvelle section dont les marges, l'orientation, les colonnes et les en-têtes peuvent différer des pages précédentes.</p></details>
+    <details><summary>Quel saut permet de passer d'une colonne à deux à mi-page ?</summary><p>Un saut de section continu, car la nouvelle section commence sur la même page.</p></details>
+    <details><summary>Un rapport sera relié en spirale sur la gauche. Quel paramètre protège le texte de la reliure ?</summary><p>Une marge de gouttière à gauche, définie dans Marges personnalisées.</p></details>
+  </section>
+</article>

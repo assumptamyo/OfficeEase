@@ -1,0 +1,99 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 1.2</span>
+    <p class="lesson-lead">A real Excel file is seldom a single grid. Sales data sits on one sheet, charts on another and a summary on a third. This lesson explains how a <strong>workbook</strong> is organised into <strong>worksheets</strong> and how to control what you see on screen.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>distinguish a workbook from a worksheet;</li>
+      <li>insert, rename, reorder, colour and delete worksheets;</li>
+      <li>choose a suitable view and keep headings visible with Freeze Panes.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Workbooks and worksheets</h3>
+    <dl class="lesson-terms">
+      <div><dt>Workbook</dt><dd>The Excel file itself, normally saved with the extension <strong>.xlsx</strong>. One workbook can contain many worksheets.</dd></div>
+      <div><dt>Worksheet</dt><dd>A single grid inside the workbook, also called a sheet. Each has a <strong>sheet tab</strong> at the bottom of the window.</dd></div>
+    </dl>
+    <p>Think of the workbook as a ring binder and each worksheet as a page in it. Keeping different kinds of information on separate sheets, such as raw data, calculations and reports, makes a workbook far easier to maintain.</p>
+    <p>A cell on another sheet is referred to by the sheet name, an exclamation mark and the cell: <code>Data!A1</code> means cell A1 on the sheet named Data.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Managing worksheets</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Task</th><th>How</th></tr></thead>
+        <tbody>
+          <tr><td>Insert a sheet</td><td>Click the <strong>+</strong> beside the sheet tabs, or press <kbd>Shift</kbd> + <kbd>F11</kbd></td></tr>
+          <tr><td>Rename</td><td>Double-click the tab, type the name, press <kbd>Enter</kbd></td></tr>
+          <tr><td>Reorder</td><td>Drag the tab left or right</td></tr>
+          <tr><td>Copy</td><td>Hold <kbd>Ctrl</kbd> and drag the tab, or right-click &gt; Move or Copy</td></tr>
+          <tr><td>Colour</td><td>Right-click the tab &gt; Tab Color</td></tr>
+          <tr><td>Delete</td><td>Right-click the tab &gt; Delete</td></tr>
+          <tr><td>Switch sheet</td><td><kbd>Ctrl</kbd> + <kbd>Page Down</kbd> / <kbd>Page Up</kbd></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Important</strong>Deleting a worksheet cannot be undone with <kbd>Ctrl</kbd> + <kbd>Z</kbd>. Check the sheet before you confirm.</aside>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>Replace Sheet1, Sheet2 and Sheet3 with names that describe the contents, such as Data, Charts and Summary. Short names without spaces are easiest to use in formulas.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Workbook views</h3>
+    <p>The view buttons are at the bottom right of the window and on the <strong>View</strong> tab.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>View</th><th>Shows</th><th>Use it for</th></tr></thead>
+        <tbody>
+          <tr><td>Normal</td><td>The continuous grid</td><td>Everyday data entry and analysis</td></tr>
+          <tr><td>Page Layout</td><td>The sheet as printed pages, with margins, headers and footers</td><td>Preparing a sheet for printing</td></tr>
+          <tr><td>Page Break Preview</td><td>Blue lines marking where each page ends</td><td>Dragging page breaks so that a table is not split awkwardly</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The <strong>zoom slider</strong> beside the view buttons enlarges or reduces the display. Zoom affects only what you see, not how the sheet prints.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Freeze Panes</h3>
+    <p>In a long list the column headings scroll out of sight, and you can no longer tell what each number means. <strong>Freeze Panes</strong> locks rows or columns in place while the rest scrolls.</p>
+    <ol class="lesson-steps">
+      <li>To lock the headings in row 1, choose <span class="lesson-path">View &gt; Freeze Panes &gt; Freeze Top Row</span>.</li>
+      <li>To lock both rows and columns, click the cell just below and to the right of what should stay fixed (for example B2), then choose <span class="lesson-path">Freeze Panes</span>.</li>
+      <li>To release them, choose <span class="lesson-path">Unfreeze Panes</span>.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: setting up a sales workbook</h4>
+    <ol class="lesson-steps">
+      <li>Create a blank workbook and add sheets until there are three.</li>
+      <li>Rename them <em>Data</em>, <em>Charts</em> and <em>Summary</em>, and give each a different tab colour.</li>
+      <li>On <em>Data</em>, type headings in row 1 and freeze the top row.</li>
+      <li>Save the workbook as <em>Sales Tracker.xlsx</em>.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>A workbook is the file (.xlsx); a worksheet is one grid inside it.</li>
+      <li>Meaningful sheet names and separate sheets for data, charts and summaries keep a workbook manageable.</li>
+      <li>Normal view is for working, Page Layout and Page Break Preview are for printing.</li>
+      <li>Freeze Panes keeps headings visible while you scroll.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>What is the difference between a workbook and a worksheet?</summary><p>The workbook is the whole Excel file. A worksheet is one of the sheets, or tabs, inside it.</p></details>
+    <details><summary>What does the reference Summary!B4 refer to?</summary><p>Cell B4 on the worksheet named Summary.</p></details>
+    <details><summary>You scroll down a 500-row list and lose sight of the column headings. What should you do?</summary><p>Use View &gt; Freeze Panes &gt; Freeze Top Row so the heading row stays in place.</p></details>
+  </section>
+</article>

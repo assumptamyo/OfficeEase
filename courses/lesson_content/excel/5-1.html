@@ -1,0 +1,90 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 5.1</span>
+    <p class="lesson-lead">So far every formula has calculated the same way for every row. The <strong>IF function</strong> lets a formula make a decision: it asks a question about the data and returns one result if the answer is yes and another if it is no. It is the basis of all automated judgement in Excel.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>write a logical test using the comparison operators;</li>
+      <li>state the three arguments of the IF function;</li>
+      <li>build IF formulas that return text, numbers or calculations.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Logical tests</h3>
+    <p>A <strong>logical test</strong> is a comparison whose answer can only be <strong>TRUE</strong> or <strong>FALSE</strong>. It is built with a comparison operator.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Operator</th><th>Meaning</th><th>Example</th><th>If C2 is 60</th></tr></thead>
+        <tbody>
+          <tr><td>=</td><td>Equal to</td><td><code>C2=60</code></td><td>TRUE</td></tr>
+          <tr><td>&lt;&gt;</td><td>Not equal to</td><td><code>C2&lt;&gt;60</code></td><td>FALSE</td></tr>
+          <tr><td>&gt;</td><td>Greater than</td><td><code>C2&gt;60</code></td><td>FALSE</td></tr>
+          <tr><td>&lt;</td><td>Less than</td><td><code>C2&lt;60</code></td><td>FALSE</td></tr>
+          <tr><td>&gt;=</td><td>Greater than or equal to</td><td><code>C2&gt;=60</code></td><td>TRUE</td></tr>
+          <tr><td>&lt;=</td><td>Less than or equal to</td><td><code>C2&lt;=60</code></td><td>TRUE</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Common mistake</strong>Confusing <code>&gt;</code> with <code>&gt;=</code>. If the pass mark is 60, a student with exactly 60 passes only if the test is <code>C2&gt;=60</code>. Always check the boundary value.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The IF function</h3>
+    <p><code>=IF(logical_test, value_if_true, value_if_false)</code></p>
+    <dl class="lesson-terms">
+      <div><dt>logical_test</dt><dd>The question, for example <code>C2&gt;=60</code>.</dd></div>
+      <div><dt>value_if_true</dt><dd>What the cell shows when the test is TRUE.</dd></div>
+      <div><dt>value_if_false</dt><dd>What the cell shows when the test is FALSE.</dd></div>
+    </dl>
+    <p>Read the commas aloud as "then" and "otherwise". <code>=IF(C2&gt;=60, "Pass", "Fail")</code> reads: <em>if C2 is at least 60, then Pass, otherwise Fail</em>.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>What IF can return</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Returns</th><th>Example</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>Text</td><td><code>=IF(B2&gt;0, "In stock", "Out of stock")</code></td><td>A label describing the stock level</td></tr>
+          <tr><td>A number</td><td><code>=IF(D2&gt;=1000, 50, 0)</code></td><td>A fixed bonus of 50 for large orders</td></tr>
+          <tr><td>A calculation</td><td><code>=IF(D2&gt;=1000, D2*10%, D2*2%)</code></td><td>10% commission on large sales, 2% otherwise</td></tr>
+          <tr><td>Nothing</td><td><code>=IF(E2&lt;TODAY(), "Overdue", "")</code></td><td>Flags late items and leaves the rest blank</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Important</strong>Text inside a formula must be in <strong>double quotation marks</strong>: <code>"Pass"</code>. Numbers must <em>not</em> be: <code>"50"</code> is text and cannot be added up later. Two quotation marks with nothing between them, <code>""</code>, mean an empty result.</aside>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>Avoid typing thresholds into the formula. Put the pass mark in a cell such as G1 and write <code>=IF(C2&gt;=$G$1, "Pass", "Fail")</code>. Changing the pass mark then means editing one cell, not every formula.</aside>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: exam results</h4>
+    <ol class="lesson-steps">
+      <li>Enter student marks out of 100 in C2:C20.</li>
+      <li>In D2 type <code>=IF(C2&gt;=50, "Pass", "Fail")</code> and press <kbd>Enter</kbd>.</li>
+      <li>Double-click the fill handle to copy the formula down.</li>
+      <li>Change one mark from 49 to 50. The result changes from Fail to Pass immediately.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>A logical test compares two values and is either TRUE or FALSE.</li>
+      <li>IF has three arguments: the test, the result if true, the result if false.</li>
+      <li>Text results need quotation marks; numbers do not.</li>
+      <li>Check the boundary: <code>&gt;</code> and <code>&gt;=</code> give different answers at the threshold.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>What does =IF(A1&gt;100, "High", "Normal") return when A1 contains 100?</summary><p>"Normal". 100 is not greater than 100, so the test is FALSE.</p></details>
+    <details><summary>Name the three arguments of IF in order.</summary><p>The logical test, the value if true, and the value if false.</p></details>
+    <details><summary>Why is =IF(B2&gt;10, "5", "0") a poor way to return a bonus amount?</summary><p>The quotation marks make 5 and 0 text, so they cannot be used in later calculations such as SUM.</p></details>
+  </section>
+</article>

@@ -1,0 +1,36 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Guided practice &middot; Module 5</span>
+    <p class="lesson-lead">Apply this module by writing three decision formulas of increasing difficulty: a simple IF, an IF with AND, and an IFS.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Before you start</h3>
+    <ul>
+      <li><strong>You need:</strong> A blank workbook with sales in column B, years of service in column C and test marks (0 to 100) in column D, starting in row 2.</li>
+      <li><strong>Time:</strong> about 15 minutes.</li>
+      <li>Work through the steps in the real application; reading them is not enough.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Steps</h3>
+    <ol class="lesson-steps">
+      <li>In E2 enter <code>=IF(D2&gt;=50, "Pass", "Fail")</code>.</li>
+      <li>In F2 calculate commission: <code>=IF(AND(B2&gt;10000, C2&gt;2), B2*10%, B2*2%)</code>.</li>
+      <li>In G2 assign a letter grade: <code>=IFS(D2&gt;=80, "A", D2&gt;=65, "B", D2&gt;=50, "C", TRUE, "F")</code>.</li>
+      <li>Select E2:G2 and double-click the fill handle to copy all three formulas down the list.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Check your result</h3>
+    <p>Your work is correct if:</p>
+    <ul>
+      <li>A mark of exactly 50 shows Pass and grade C.</li>
+      <li>Commission is 10% only where both conditions are met.</li>
+      <li>No cell shows <code>#N/A</code>, because the IFS ends with a TRUE catch-all.</li>
+    </ul>
+    <aside class="lesson-note is-tip"><strong>Go further</strong>Rewrite the grade formula as a nested IF and compare how many closing brackets it needs.</aside>
+  </section>
+</article>

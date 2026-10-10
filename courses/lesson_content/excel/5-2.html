@@ -1,0 +1,100 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 5.2</span>
+    <p class="lesson-lead">Real decisions rarely rest on one condition. A bonus may require high sales <em>and</em> long service; a discount may apply to members <em>or</em> to large orders; a grade has five possible outcomes. This lesson extends IF with <strong>AND</strong>, <strong>OR</strong>, nesting and the <strong>IFS</strong> function.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>combine conditions with AND and OR and predict the result;</li>
+      <li>use AND or OR as the logical test of an IF;</li>
+      <li>write a nested IF and the equivalent IFS formula;</li>
+      <li>choose the clearest function for a given decision.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>AND and OR</h3>
+    <p>Both functions take several logical tests and return a single TRUE or FALSE.</p>
+    <dl class="lesson-terms">
+      <div><dt>AND(test1, test2, …)</dt><dd>TRUE only if <strong>every</strong> test is true. One false test makes the whole result FALSE.</dd></div>
+      <div><dt>OR(test1, test2, …)</dt><dd>TRUE if <strong>at least one</strong> test is true. It is FALSE only when every test is false.</dd></div>
+    </dl>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Test 1</th><th>Test 2</th><th>AND</th><th>OR</th></tr></thead>
+        <tbody>
+          <tr><td>TRUE</td><td>TRUE</td><td>TRUE</td><td>TRUE</td></tr>
+          <tr><td>TRUE</td><td>FALSE</td><td>FALSE</td><td>TRUE</td></tr>
+          <tr><td>FALSE</td><td>TRUE</td><td>FALSE</td><td>TRUE</td></tr>
+          <tr><td>FALSE</td><td>FALSE</td><td>FALSE</td><td>FALSE</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Using AND and OR inside IF</h3>
+    <p>AND and OR are placed where the logical test of an IF would normally go.</p>
+    <p><code>=IF(AND(B2&gt;10000, C2&gt;2), B2*10%, B2*2%)</code><br>pays 10% commission only when sales exceed 10,000 <em>and</em> service exceeds two years; otherwise 2%.</p>
+    <p><code>=IF(OR(B2&gt;=50000, C2&gt;=4.8), "Bonus", "No bonus")</code><br>awards a bonus when <em>either</em> the sales target or the customer rating is met.</p>
+    <p>Work through an example by evaluating the inside first. In <code>=IF(AND(10&gt;5, 2&gt;8), "Yes", "No")</code>, the first test is TRUE but the second is FALSE. AND needs both, so it returns FALSE, and the IF returns <strong>"No"</strong>.</p>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Nested IF</h3>
+    <p>An IF can only choose between two outcomes. For more, a second IF is placed in the <em>value_if_false</em> position of the first. This is <strong>nesting</strong>.</p>
+    <p><code>=IF(C2&gt;=80, "A", IF(C2&gt;=65, "B", IF(C2&gt;=50, "C", "F")))</code></p>
+    <p>Excel tests the conditions from left to right and stops at the first that is true. A mark of 70 fails the first test, passes the second, and returns B.</p>
+    <aside class="lesson-note is-warn"><strong>Important</strong>Order matters. Test the highest threshold first. If the formula began with <code>C2&gt;=50</code>, every mark of 50 or more, including 95, would return C and the later tests would never be reached. Each nested IF also needs its own closing bracket, which is where most errors occur.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The IFS function</h3>
+    <p><strong>IFS</strong> expresses the same logic as pairs of <em>test, result</em> in a single function, with no nesting.</p>
+    <p><code>=IFS(C2&gt;=80, "A", C2&gt;=65, "B", C2&gt;=50, "C", TRUE, "F")</code></p>
+    <p>Like nested IF, it returns the result of the first test that is true. The final pair, <code>TRUE, "F"</code>, is the catch-all: TRUE is always true, so anything not matched earlier receives F. Without it, a mark below 50 would produce the error <code>#N/A</code>.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th></th><th>Nested IF</th><th>IFS</th></tr></thead>
+        <tbody>
+          <tr><td>Structure</td><td>IFs inside IFs</td><td>A flat list of test and result pairs</td></tr>
+          <tr><td>Closing brackets</td><td>One for every IF</td><td>One</td></tr>
+          <tr><td>Readability</td><td>Hard to follow beyond three levels</td><td>Easy to read and to edit</td></tr>
+          <tr><td>Default result</td><td>The last value_if_false</td><td>A final <code>TRUE, result</code> pair</td></tr>
+          <tr><td>Availability</td><td>All versions of Excel</td><td>Excel 2019 and Microsoft 365</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The main advantage of IFS is clarity: it removes the deeply nested closing brackets and makes a long chain of conditions readable.</p>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: performance tiers</h4>
+    <ol class="lesson-steps">
+      <li>With sales in B2 and customer rating in C2, enter <code>=IF(OR(B2&gt;=50000, C2&gt;=4.8), "Eligible", "Not eligible")</code> in D2.</li>
+      <li>In E2 enter <code>=IFS(B2&gt;=100000, "Gold", B2&gt;=50000, "Silver", TRUE, "Bronze")</code>.</li>
+      <li>Fill both formulas down the list.</li>
+      <li>Test the boundaries: try sales of exactly 50,000 and exactly 100,000 and confirm the tier is the one you intended.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>AND is true only when all tests are true; OR is true when at least one is.</li>
+      <li>Place AND or OR in the logical test of IF to decide on several conditions.</li>
+      <li>In nested IF and IFS, the first true test wins, so order the tests from the most demanding down.</li>
+      <li>IFS avoids nested brackets; end it with <code>TRUE</code> as a catch-all.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>What does =IF(AND(10&gt;5, 2&gt;8), "Yes", "No") return?</summary><p>"No". The second test is false, so AND returns FALSE.</p></details>
+    <details><summary>What is the main advantage of IFS over nested IF?</summary><p>It removes the need for deeply nested closing brackets, so the formula is easier to read and maintain.</p></details>
+    <details><summary>What would the same formula return if AND were replaced by OR?</summary><p>"Yes". OR needs only one true test, and 10&gt;5 is true.</p></details>
+  </section>
+</article>

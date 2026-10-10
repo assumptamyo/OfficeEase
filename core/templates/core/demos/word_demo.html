@@ -1,0 +1,46 @@
+{% load i18n %}
+<div class="oe-demo oe-demo--word" data-oe-demo="word" role="img"
+  aria-label="{% trans 'Animated demo: writing and formatting a report in Microsoft Word' %}"
+  data-title="{% trans 'Monthly Sales Report' %}"
+  data-para="{% trans 'Sales grew by 24% this quarter thanks to our new training program.' %}"
+  data-mark="24%"
+  data-bullets="{% trans 'Clear headings' %}|{% trans 'Bold key numbers' %}|{% trans 'Neat bullet lists' %}">
+  <div class="oe-app" aria-hidden="true">
+    <div class="oe-titlebar">
+      <span class="oe-app-icon">W</span>
+      <span class="oe-doc-name">Document1 - Word</span>
+      <span class="oe-win"><i class="fa-solid fa-minus"></i><i class="fa-regular fa-square"></i><i class="fa-solid fa-xmark"></i></span>
+    </div>
+    <div class="oe-tabs">
+      <span>File</span><span class="is-active">Home</span><span>Insert</span><span>Layout</span><span>Review</span>
+    </div>
+    <div class="oe-ribbon">
+      <span class="oe-select" style="width: 8em">Calibri <i class="fa-solid fa-chevron-down"></i></span>
+      <span class="oe-select">11 <i class="fa-solid fa-chevron-down"></i></span>
+      <span class="oe-sep"></span>
+      <span class="oe-btn" data-oe="bold"><b>B</b></span>
+      <span class="oe-btn"><em>I</em></span>
+      <span class="oe-btn"><u>U</u></span>
+      <span class="oe-btn" data-oe="hl"><i class="fa-solid fa-highlighter"></i></span>
+      <span class="oe-sep"></span>
+      <span class="oe-btn" data-oe="left"><i class="fa-solid fa-align-left"></i></span>
+      <span class="oe-btn" data-oe="center"><i class="fa-solid fa-align-center"></i></span>
+      <span class="oe-btn" data-oe="bullets"><i class="fa-solid fa-list-ul"></i></span>
+      <span class="oe-sep"></span>
+      <span class="oe-style" data-oe="normal">Normal</span>
+      <span class="oe-style oe-style--h1" data-oe="h1">Heading 1</span>
+    </div>
+    <div class="oe-canvas">
+      <div class="oe-page" data-oe="page">
+        <p class="oe-w-title"><span data-oe="title"></span></p>
+        <p data-oe="para"></p>
+        <ul class="oe-w-list" data-oe="list"></ul>
+      </div>
+    </div>
+    <div class="oe-status">
+      <span><span data-oe="words">0</span> {% trans "words" %}</span>
+      <span>100%</span>
+    </div>
+    <div class="oe-cursor"><i class="fa-solid fa-mouse-pointer"></i></div>
+  </div>
+</div>

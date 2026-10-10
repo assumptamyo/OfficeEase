@@ -1,0 +1,99 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 1.1</span>
+    <p class="lesson-lead">Excel is a grid, and everything it does, from a shopping list to a company budget, depends on being able to say exactly <strong>where</strong> a piece of data lives. This lesson introduces the grid, the way cells are addressed, and how to move around a worksheet with confidence.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>name the parts of the Excel window and state what each one shows;</li>
+      <li>read and write cell and range references;</li>
+      <li>move to any cell quickly with the mouse, the keyboard and the Name Box.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The grid: columns, rows and cells</h3>
+    <dl class="lesson-terms">
+      <div><dt>Column</dt><dd>A vertical strip of the grid, identified by a letter: A, B, C … Z, then AA, AB and so on up to XFD (16,384 columns).</dd></div>
+      <div><dt>Row</dt><dd>A horizontal strip, identified by a number from 1 to 1,048,576.</dd></div>
+      <div><dt>Cell</dt><dd>The box where one column meets one row. A cell holds a single value: a number, some text, a date or a formula.</dd></div>
+      <div><dt>Active cell</dt><dd>The cell currently selected, shown with a thick green border. Whatever you type goes into it.</dd></div>
+    </dl>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Cell references</h3>
+    <p>Every cell has an address called a <strong>cell reference</strong>, written as the column letter followed by the row number. The cell where column D meets row 10 is <strong>D10</strong>: letter first, number second, with nothing in between.</p>
+    <p>A rectangular block of cells is a <strong>range</strong>. It is written as its top-left cell and its bottom-right cell separated by a colon.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Reference</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>D10</td><td>The single cell in column D, row 10</td></tr>
+          <tr><td>A1:A5</td><td>Five cells in column A, rows 1 to 5</td></tr>
+          <tr><td>A1:C3</td><td>A block three columns wide and three rows deep (nine cells)</td></tr>
+          <tr><td>B:B</td><td>The whole of column B</td></tr>
+          <tr><td>3:3</td><td>The whole of row 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Common mistake</strong>Writing the row first (10D) or adding punctuation (D-10). Excel only understands the form <em>letter then number</em>.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>The parts of the window</h3>
+    <dl class="lesson-terms">
+      <div><dt>Name Box</dt><dd>The small box at the left, above column A. It displays the <strong>address of the active cell</strong>. Type a reference into it and press <kbd>Enter</kbd> to jump straight to that cell.</dd></div>
+      <div><dt>Formula Bar</dt><dd>The long box to the right of the Name Box. It shows the true <strong>contents</strong> of the active cell: if the cell displays 150 but contains <code>=100+50</code>, the Formula Bar shows the formula.</dd></div>
+      <div><dt>Ribbon</dt><dd>The tabs of commands across the top: Home, Insert, Formulas, Data and others.</dd></div>
+      <div><dt>Status Bar</dt><dd>The strip at the bottom. Select several numbers and it instantly reports their Sum, Average and Count.</dd></div>
+    </dl>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>The grid shows the <em>result</em>; the Formula Bar shows the <em>recipe</em>. When a number looks wrong, click the cell and read the Formula Bar.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Moving around</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Keys</th><th>Movement</th></tr></thead>
+        <tbody>
+          <tr><td>Arrow keys</td><td>One cell in that direction</td></tr>
+          <tr><td><kbd>Ctrl</kbd> + arrow key</td><td>To the edge of the current block of data</td></tr>
+          <tr><td><kbd>Ctrl</kbd> + <kbd>Home</kbd></td><td>To cell A1</td></tr>
+          <tr><td><kbd>Ctrl</kbd> + <kbd>End</kbd></td><td>To the last cell that contains data</td></tr>
+          <tr><td><kbd>Ctrl</kbd> + <kbd>G</kbd> or <kbd>F5</kbd></td><td>Opens Go To, where you type a reference</td></tr>
+          <tr><td><kbd>Shift</kbd> + arrow key</td><td>Extends the selection by one cell</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: finding your way</h4>
+    <ol class="lesson-steps">
+      <li>Click in the Name Box, type <code>C5</code> and press <kbd>Enter</kbd>. The active cell moves to C5.</li>
+      <li>Type <em>OfficeEase Test</em> and press <kbd>Enter</kbd>. The text is stored in C5.</li>
+      <li>Click C5 again and look at the Formula Bar: it shows the same text, confirming the contents.</li>
+      <li>Press <kbd>Ctrl</kbd> + <kbd>Home</kbd> to return to A1.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>A cell reference is the column letter followed by the row number, such as D10.</li>
+      <li>A range is written with a colon, such as A1:C3.</li>
+      <li>The Name Box shows the address of the active cell; the Formula Bar shows its contents.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>What is the reference of the cell where column D meets row 10?</summary><p>D10. The column letter always comes first.</p></details>
+    <details><summary>Which part of the window displays the address of the active cell?</summary><p>The Name Box, at the left above column A.</p></details>
+    <details><summary>How many cells are in the range B2:C4?</summary><p>Six: two columns (B and C) by three rows (2, 3 and 4).</p></details>
+  </section>
+</article>

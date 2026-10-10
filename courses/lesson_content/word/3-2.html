@@ -1,0 +1,102 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Lesson 3.2</span>
+    <p class="lesson-lead">The <strong>Layout tab</strong> defines the physical page: its size, its margins and how text is divided across it. The central concept of this lesson is the <strong>section</strong>, the mechanism that lets one document contain pages with different layouts.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Learning objectives</h3>
+    <p>By the end of this lesson you will be able to:</p>
+    <ul>
+      <li>set margins, orientation and paper size, including a gutter for binding;</li>
+      <li>distinguish a page break from a section break and choose the right type;</li>
+      <li>give one page a different orientation from the rest of the document;</li>
+      <li>arrange text in columns and control where a column ends.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Page setup</h3>
+    <p>The <strong>Page Setup</strong> group holds the three settings that define a page.</p>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Setting</th><th>Options</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Margins</td><td>Normal, Narrow, Moderate, Wide, Custom Margins</td><td>Normal is 1 inch (2.54 cm) on all four sides</td></tr>
+          <tr><td>Orientation</td><td>Portrait, Landscape</td><td>Landscape suits wide tables and charts</td></tr>
+          <tr><td>Size</td><td>A4, Letter, Legal, Executive and others</td><td>A4 is standard in most countries; Letter in North America</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>A <strong>gutter margin</strong> is extra space added to the binding edge of the page. If a report will be spiral-bound or stapled on the left, a gutter of about 0.5 inch stops the binding from covering the text. Set it under <span class="lesson-path">Margins &gt; Custom Margins</span>.</p>
+    <!--figure:margins-->
+  </section>
+
+  <section class="lesson-part">
+    <h3>Page breaks and section breaks</h3>
+    <p>Both are inserted from <span class="lesson-path">Layout &gt; Breaks</span>, and they look similar on screen, but they do very different jobs.</p>
+    <dl class="lesson-terms">
+      <div><dt>Page break</dt><dd>Pushes the following text to the top of the next page. The page settings stay exactly the same. Shortcut: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.</dd></div>
+      <div><dt>Section break</dt><dd>Divides the document into independent <strong>sections</strong>. Each section can have its own margins, orientation, columns, headers, footers and page numbering.</dd></div>
+    </dl>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Section break type</th><th>Where the new section starts</th><th>Typical use</th></tr></thead>
+        <tbody>
+          <tr><td>Next Page</td><td>On the following page</td><td>A landscape page, or a new chapter with its own header</td></tr>
+          <tr><td>Continuous</td><td>On the same page</td><td>Changing the number of columns part-way down a page</td></tr>
+          <tr><td>Even Page / Odd Page</td><td>On the next even- or odd-numbered page</td><td>Books in which chapters always open on a right-hand page</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Common mistake</strong>Changing the orientation and finding that the <em>whole</em> document has turned landscape. Orientation applies to a section, and a document with no section breaks is one single section. Insert the breaks first, then change the orientation.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Different layouts in one document</h3>
+    <p>To turn a single page landscape in the middle of a portrait report, isolate it in a section of its own:</p>
+    <ol class="lesson-steps">
+      <li>Click at the end of the page before the one that should change and insert <span class="lesson-path">Breaks &gt; Next Page</span>.</li>
+      <li>Click at the end of the page that should be landscape and insert another <em>Next Page</em> break.</li>
+      <li>Click anywhere in the middle section and choose <span class="lesson-path">Orientation &gt; Landscape</span>.</li>
+    </ol>
+    <p>The same principle gives each chapter its own header. Open the header of the new section and turn off <strong>Link to Previous</strong> on the Header &amp; Footer tab; otherwise the section simply repeats the header of the one before it.</p>
+    <aside class="lesson-note is-tip"><strong>Tip</strong>Turn on the ¶ marks with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>8</kbd> to see where breaks are. Section breaks store the layout of the text <em>above</em> them, so deleting one makes that text take on the layout of the section below.</aside>
+    <!--figure:sections-->
+  </section>
+
+  <section class="lesson-part">
+    <h3>Columns</h3>
+    <p>Newsletters and brochures use columns because short lines are easier to read. Choose <span class="lesson-path">Layout &gt; Columns</span> and pick One, Two, Three, Left or Right. <em>More Columns</em> lets you set exact widths and spacing and add a <strong>line between</strong> columns.</p>
+    <p>Text fills the first column before flowing into the next. To end a column early, insert a <strong>column break</strong> with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>.</p>
+    <p>To keep a full-width headline above a two-column article, place a <em>Continuous</em> section break after the headline and apply two columns only to the section below it.</p>
+    <!--figure:columns-->
+  </section>
+
+  <section class="lesson-example">
+    <h4>Worked example: a three-page newsletter</h4>
+    <ol class="lesson-steps">
+      <li>Set the margins to <em>Moderate</em> and the paper size to A4.</li>
+      <li>After the cover page, insert a <em>Next Page</em> section break; after the chart page, insert another.</li>
+      <li>Click in the chart section and set the orientation to Landscape.</li>
+      <li>In the final section, type the headline, insert a <em>Continuous</em> break, then apply two columns with a line between.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Key takeaways</h3>
+    <ul>
+      <li>A page break starts a new page; a section break starts a new set of layout rules.</li>
+      <li>Orientation, margins, columns, headers and numbering are all properties of a section.</li>
+      <li>Use Next Page breaks to isolate a page, and a Continuous break to change columns on the same page.</li>
+      <li>A gutter margin reserves space for binding.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Check your understanding</h3>
+    <details><summary>What is the difference between pressing Ctrl + Enter and inserting a Next Page section break?</summary><p>Both move the text to a new page, but only the section break creates a new section whose margins, orientation, columns and headers can differ from the pages before it.</p></details>
+    <details><summary>Which break lets you switch from one column to two half-way down a page?</summary><p>A Continuous section break, because the new section begins on the same page.</p></details>
+    <details><summary>A report will be spiral-bound on the left. Which setting protects the text from the binding?</summary><p>A gutter margin on the left, set in Custom Margins.</p></details>
+  </section>
+</article>

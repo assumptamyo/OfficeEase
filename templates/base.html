@@ -40,132 +40,153 @@
 </head>
 <body class="container bg-white text-black pt-1 mx-auto font-sans">
 
-  <nav class="max-w-7xl mx-auto flex items-center justify-between bg-blue-50 px-10 py-3 rounded-2xl">
-    <div class="text-3xl font-semibold" >{% trans "OfficeEase" %}</div>
-    <ul class="md:flex gap-8 text-sm">
-      <li class="hover:text-black cursor-pointer"><a href="{% url 'home' %}" >{% trans "Home" %}</a></li>
-      
-            <li class="relative group cursor-pointer">
-                <div class="flex items-center gap-1 hover:text-black transition-colors py-1">
-                    <a href="#" class="font-semibold text-slate-600 group-hover:text-indigo-600 transition-colors">{% trans "Courses" %}</a>
-                    <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 group-hover:rotate-180 transition-transform"></i>
-                </div>
+  {% with current=request.resolver_match.url_name %}
+  <nav class="sticky top-2 z-[110] max-w-7xl mx-auto px-3 lg:px-6">
+    <div class="relative flex items-center justify-between gap-4 rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-2.5 shadow-[0_10px_30px_-14px_rgba(15,23,42,0.25)] backdrop-blur-md lg:px-6">
 
-                <div class="absolute top-[85%] left-1/2 -translate-x-1/2 w-[760px] bg-white rounded-[1.75rem] shadow-2xl border border-slate-100 p-7 opacity-0 invisible translate-y-4 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-[120]">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h3 class="text-xs font-extrabold text-slate-900 tracking-widest uppercase mb-1">{% trans "Learning Modules" %}</h3>
-                            <p class="text-sm text-slate-500 font-medium">{% trans "Select an application to start your interactive lab." %}</p>
-                        </div>
-                        <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shrink-0">
-                            <i class="fa-solid fa-table-cells-large text-slate-400 text-sm"></i>
-                        </div>
-                    </div>
+      <a href="{% url 'home' %}" class="flex shrink-0 items-center gap-2.5">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-sm">
+          <i class="fa-solid fa-layer-group text-sm"></i>
+        </span>
+        <span class="text-xl font-extrabold tracking-tight text-slate-900">Office<span class="text-blue-600">Ease</span></span>
+      </a>
 
-                    <div class="grid grid-cols-3 gap-5">
-                        <a href="{% url 'word_course' %}" class="bg-white rounded-3xl p-6 shadow-[0_8px_30px_-4px_rgba(0,0,0,0.05)] border border-slate-50 hover:shadow-[0_12px_40px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center mb-5">
-                                <i class="fa-solid fa-file-word text-blue-600 text-2xl"></i>
-                            </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-1">{% trans "Word" %}</h4>
-                            <p class="text-sm text-slate-500 font-medium leading-relaxed">{% trans "Master professional documents." %}</p>
-                            <div class="mt-4">
-                                <span class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-blue-700">
-                                    <i class="fa-solid fa-route"></i>
-                                    {% trans "Structured Path" %}
-                                </span> 
-                            </div>
-                        </a>
+      <ul class="hidden items-center gap-1 text-sm font-semibold lg:flex">
+        <li>
+          <a href="{% url 'home' %}" class="block rounded-xl px-3.5 py-2 transition-colors {% if current == 'home' %}bg-blue-50 text-blue-700{% else %}text-slate-600 hover:bg-slate-100 hover:text-slate-900{% endif %}">{% trans "Home" %}</a>
+        </li>
 
-                        <a href="{% url 'excel_course' %}" class="bg-white rounded-3xl p-6 shadow-[0_8px_30px_-4px_rgba(0,0,0,0.05)] border border-slate-50 hover:shadow-[0_12px_40px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center mb-5">
-                                <i class="fa-solid fa-file-excel text-emerald-600 text-2xl"></i>
-                            </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-1">{% trans "Excel" %}</h4>
-                            <p class="text-sm text-slate-500 font-medium leading-relaxed">{% trans "Crunch data and visual charts." %}</p>
-                        </a>
+        <li class="group relative">
+          <button type="button" aria-haspopup="true"
+            class="flex items-center gap-1.5 rounded-xl px-3.5 py-2 transition-colors group-hover:bg-slate-100 group-hover:text-slate-900 group-focus-within:bg-slate-100 {% if current == 'word_course' or current == 'excel_course' or current == 'powerpoint_course' %}bg-blue-50 text-blue-700{% else %}text-slate-600{% endif %}">
+            {% trans "Courses" %}
+            <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180"></i>
+          </button>
 
-                        <a href="{% url 'powerpoint_course' %}" class="bg-white rounded-3xl p-6 shadow-[0_8px_30px_-4px_rgba(0,0,0,0.05)] border border-slate-50 hover:shadow-[0_12px_40px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all">
-                            <div class="w-14 h-14 rounded-2xl bg-orange-50 flex items-center justify-center mb-5">
-                                <i class="fa-solid fa-file-powerpoint text-orange-600 text-2xl"></i>
-                            </div>
-                            <h4 class="font-extrabold text-slate-900 text-xl mb-1">{% trans "PowerPoint" %}</h4>
-                            <p class="text-sm text-slate-500 font-medium leading-relaxed">{% trans "Design stunning slide pitches." %}</p>
-                        </a>
-                    </div>
-                </div>
-            </li>
+          <div class="invisible absolute left-1/2 top-full z-[120] w-[360px] -translate-x-1/2 translate-y-2 pt-5 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
+              <p class="px-5 pb-1 pt-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{% trans "Learning Modules" %}</p>
+              <div class="p-2">
+                <a href="{% url 'word_course' %}" class="group/item flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-blue-50">
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-blue-100 text-lg text-blue-600 transition-colors group-hover/item:bg-blue-600 group-hover/item:text-white"><i class="fa-solid fa-file-word"></i></span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-extrabold text-slate-900">{% trans "Word" %}</span>
+                    <span class="block text-xs font-medium text-slate-500">{% trans "Master professional documents." %}</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-right -translate-x-1 text-xs text-blue-600 opacity-0 transition-all group-hover/item:translate-x-0 group-hover/item:opacity-100"></i>
+                </a>
+                <a href="{% url 'excel_course' %}" class="group/item flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-emerald-50">
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald-100 text-lg text-emerald-600 transition-colors group-hover/item:bg-emerald-600 group-hover/item:text-white"><i class="fa-solid fa-file-excel"></i></span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-extrabold text-slate-900">{% trans "Excel" %}</span>
+                    <span class="block text-xs font-medium text-slate-500">{% trans "Crunch data and visual charts." %}</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-right -translate-x-1 text-xs text-emerald-600 opacity-0 transition-all group-hover/item:translate-x-0 group-hover/item:opacity-100"></i>
+                </a>
+                <a href="{% url 'powerpoint_course' %}" class="group/item flex items-center gap-4 rounded-xl p-3 transition-colors hover:bg-orange-50">
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-orange-100 text-lg text-orange-600 transition-colors group-hover/item:bg-orange-600 group-hover/item:text-white"><i class="fa-solid fa-file-powerpoint"></i></span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-sm font-extrabold text-slate-900">{% trans "PowerPoint" %}</span>
+                    <span class="block text-xs font-medium text-slate-500">{% trans "Design stunning slide pitches." %}</span>
+                  </span>
+                  <i class="fa-solid fa-arrow-right -translate-x-1 text-xs text-orange-600 opacity-0 transition-all group-hover/item:translate-x-0 group-hover/item:opacity-100"></i>
+                </a>
+              </div>
+              <div class="flex items-center gap-2 border-t border-slate-100 bg-slate-50 px-5 py-3 text-xs font-semibold text-slate-500">
+                <i class="fa-solid fa-route text-blue-600"></i>
+                {% trans "Structured Path" %}
+              </div>
+            </div>
+          </div>
+        </li>
 
-      {% if user.is_authenticated %}
-      <li class="hover:text-black cursor-pointer"><a href="{% url 'how_it_works' %}" >{% trans "How It Works" %}</a></li>
-      {% else %}
-      <li class="hover:text-black cursor-pointer"><a href="{% url 'auth' %}?next={{ request.path }}" >{% trans "How It Works" %}</a></li>
-      {% endif %}
-      <li class="hover:text-black cursor-pointer"><a href="{% url 'about_us' %}" >{% trans "About Us" %}</a></li>
-    </ul>
+        <li>
+          <a href="{% if user.is_authenticated %}{% url 'how_it_works' %}{% else %}{% url 'auth' %}?next={% url 'how_it_works' %}{% endif %}" class="block rounded-xl px-3.5 py-2 transition-colors {% if current == 'how_it_works' %}bg-blue-50 text-blue-700{% else %}text-slate-600 hover:bg-slate-100 hover:text-slate-900{% endif %}">{% trans "How It Works" %}</a>
+        </li>
+        <li>
+          <a href="{% url 'about_us' %}" class="block rounded-xl px-3.5 py-2 transition-colors {% if current == 'about_us' %}bg-blue-50 text-blue-700{% else %}text-slate-600 hover:bg-slate-100 hover:text-slate-900{% endif %}">{% trans "About Us" %}</a>
+        </li>
+      </ul>
 
-    <div class="flex gap-4 ml-6 items-center">
-      <div class="relative group cursor-pointer mr-2">
-        <div class="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">
-          <i class="fa-solid fa-globe"></i>
-          <span class="current-lang">{{ LANGUAGE_CODE|upper }}</span>
-          <i class="fa-solid fa-chevron-down text-[10px] opacity-50"></i>
-        </div>
-        <form action="{% url 'set_language' %}" method="post">
+      <div class="flex shrink-0 items-center gap-2">
+        <div class="group relative">
+          <button type="button" aria-haspopup="true" class="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 transition-colors group-hover:bg-slate-100 group-hover:text-slate-900 group-focus-within:bg-slate-100">
+            <i class="fa-solid fa-globe"></i>
+            <span class="current-lang hidden sm:inline">{{ LANGUAGE_CODE|upper }}</span>
+            <i class="fa-solid fa-chevron-down hidden text-[10px] opacity-60 transition-transform sm:inline-block duration-300 group-hover:rotate-180 group-focus-within:rotate-180"></i>
+          </button>
+          <form action="{% url 'set_language' %}" method="post"
+            class="invisible absolute right-0 top-full z-[120] w-40 pt-5 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
             {% csrf_token %}
             <input name="next" type="hidden" value="{{ request.get_full_path|default:request.path }}">
-            <ul class="absolute right-0 mt-2 w-32 bg-white border border-slate-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[100] p-2">
-                <li><button type="submit" name="language" value="en" class="language-option block w-full text-left px-4 py-2 text-xs hover:bg-blue-50 rounded-lg">English</button></li>
-                <li><button type="submit" name="language" value="fr" class="language-option block w-full text-left px-4 py-2 text-xs hover:bg-blue-50 rounded-lg">Français</button></li>
-                <li><button type="submit" name="language" value="my" class="language-option block w-full text-left px-4 py-2 text-xs hover:bg-blue-50 rounded-lg">မြန်မာဘာသာ</button></li>
-                <li><button type="submit" name="language" value="hi" class="language-option block w-full text-left px-4 py-2 text-xs hover:bg-blue-50 rounded-lg">हिंदी</button></li>
+            <ul class="rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl">
+              <li><button type="submit" name="language" value="en" class="language-option block w-full rounded-lg px-3 py-2 text-left text-xs font-medium hover:bg-blue-50 {% if LANGUAGE_CODE == 'en' %}bg-blue-50 font-bold text-blue-700{% else %}text-slate-600{% endif %}">English</button></li>
+              <li><button type="submit" name="language" value="fr" class="language-option block w-full rounded-lg px-3 py-2 text-left text-xs font-medium hover:bg-blue-50 {% if LANGUAGE_CODE == 'fr' %}bg-blue-50 font-bold text-blue-700{% else %}text-slate-600{% endif %}">Français</button></li>
+              <li><button type="submit" name="language" value="my" class="language-option block w-full rounded-lg px-3 py-2 text-left text-xs font-medium hover:bg-blue-50 {% if LANGUAGE_CODE == 'my' %}bg-blue-50 font-bold text-blue-700{% else %}text-slate-600{% endif %}">မြန်မာဘာသာ</button></li>
+              <li><button type="submit" name="language" value="hi" class="language-option block w-full rounded-lg px-3 py-2 text-left text-xs font-medium hover:bg-blue-50 {% if LANGUAGE_CODE == 'hi' %}bg-blue-50 font-bold text-blue-700{% else %}text-slate-600{% endif %}">हिंदी</button></li>
             </ul>
-        </form>
-      </div>
+          </form>
+        </div>
 
-      {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
         <div class="relative">
-          <button class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold shadow-sm hover:shadow transition-shadow" onclick="toggleDropdown()">
+          <button class="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 text-sm font-bold text-white shadow-sm ring-2 ring-white transition-shadow hover:shadow-md" onclick="toggleDropdown()">
             {{ user.first_name|slice:":1"|default:user.username|slice:":1"|upper }}
           </button>
-          
-          <div id="user-dropdown" class="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-xl border border-slate-100 z-[100] hidden overflow-hidden transition-all duration-200">
-            <!-- User Info Header -->
-            <div class="px-4 py-3 border-b border-slate-100 bg-slate-50">
-                <p class="text-sm font-semibold text-slate-800">{{ user.first_name }} {{ user.last_name }}</p>
-                <p class="text-xs text-slate-500 truncate">{{ user.email }}</p>
-            </div>
 
-            <!-- Dropdown Links -->
-            <div class="py-2">
-                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <i class="fa-solid fa-chart-pie w-4 text-center"></i>
-                    {% trans "My Dashboard" %}
-                </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <i class="fa-solid fa-user w-4 text-center"></i>
-                    {% trans "Account Settings" %}
-                </a>
-                <a href="#" class="flex items-center gap-3 px-4 py-2 text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                    <i class="fa-solid fa-award w-4 text-center"></i>
-                    {% trans "My Certificates" %}
-                </a>
+          <div id="user-dropdown" class="absolute right-0 z-[120] mt-3 hidden w-60 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
+            <div class="border-b border-slate-100 bg-slate-50 px-4 py-3">
+              <p class="text-sm font-bold text-slate-800">{{ user.first_name }} {{ user.last_name }}</p>
+              <p class="truncate text-xs text-slate-500">{{ user.email }}</p>
             </div>
-
-            <!-- Logout Section -->
-            <div class="border-t border-slate-100 py-1">
-                <a href="{% url 'logout' %}" class="flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors">
-                    <i class="fa-solid fa-arrow-right-from-bracket w-4 text-center"></i>
-                    {% trans "Log Out" %}
-                </a>
+            <div class="p-2">
+              <a href="{% url 'dashboard' %}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-600">
+                <i class="fa-solid fa-chart-pie w-4 text-center"></i>
+                {% trans "My Dashboard" %}
+              </a>
+              <a href="{% url 'account_settings' %}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-600">
+                <i class="fa-solid fa-user w-4 text-center"></i>
+                {% trans "Account Settings" %}
+              </a>
+              <a href="#" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-600">
+                <i class="fa-solid fa-award w-4 text-center"></i>
+                {% trans "My Certificates" %}
+              </a>
+            </div>
+            <div class="border-t border-slate-100 p-2">
+              <a href="{% url 'logout' %}" class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-red-600 transition-colors hover:bg-red-50">
+                <i class="fa-solid fa-arrow-right-from-bracket w-4 text-center"></i>
+                {% trans "Log Out" %}
+              </a>
             </div>
           </div>
         </div>
-      {% else %}
-        <a href="{% url 'auth' %}" class="text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-7 rounded-xl transition-all shadow-sm">{% trans "Sign In" %}</a>
+        {% else %}
+        <a href="{% url 'auth' %}" class="hidden rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-blue-600 hover:shadow-md sm:block">{% trans "Sign In" %}</a>
+        {% endif %}
+
+        <button type="button" id="nav-toggle" aria-label="{% trans 'Menu' %}" aria-expanded="false" aria-controls="mobile-menu"
+          class="grid h-9 w-9 place-items-center rounded-xl text-slate-700 transition-colors hover:bg-slate-100 lg:hidden">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="mt-2 hidden rounded-2xl border border-slate-200 bg-white p-3 text-sm font-semibold shadow-xl lg:hidden">
+      <a href="{% url 'home' %}" class="block rounded-xl px-4 py-2.5 {% if current == 'home' %}bg-blue-50 text-blue-700{% else %}text-slate-700 hover:bg-slate-100{% endif %}">{% trans "Home" %}</a>
+      <p class="px-4 pb-1 pt-3 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{% trans "Courses" %}</p>
+      <a href="{% url 'word_course' %}" class="flex items-center gap-3 rounded-xl px-4 py-2.5 text-slate-700 hover:bg-blue-50"><i class="fa-solid fa-file-word w-4 text-center text-blue-600"></i>{% trans "Word" %}</a>
+      <a href="{% url 'excel_course' %}" class="flex items-center gap-3 rounded-xl px-4 py-2.5 text-slate-700 hover:bg-emerald-50"><i class="fa-solid fa-file-excel w-4 text-center text-emerald-600"></i>{% trans "Excel" %}</a>
+      <a href="{% url 'powerpoint_course' %}" class="flex items-center gap-3 rounded-xl px-4 py-2.5 text-slate-700 hover:bg-orange-50"><i class="fa-solid fa-file-powerpoint w-4 text-center text-orange-600"></i>{% trans "PowerPoint" %}</a>
+      <div class="my-2 border-t border-slate-100"></div>
+      <a href="{% if user.is_authenticated %}{% url 'how_it_works' %}{% else %}{% url 'auth' %}?next={% url 'how_it_works' %}{% endif %}" class="block rounded-xl px-4 py-2.5 {% if current == 'how_it_works' %}bg-blue-50 text-blue-700{% else %}text-slate-700 hover:bg-slate-100{% endif %}">{% trans "How It Works" %}</a>
+      <a href="{% url 'about_us' %}" class="block rounded-xl px-4 py-2.5 {% if current == 'about_us' %}bg-blue-50 text-blue-700{% else %}text-slate-700 hover:bg-slate-100{% endif %}">{% trans "About Us" %}</a>
+      {% if not user.is_authenticated %}
+      <a href="{% url 'auth' %}" class="mt-2 block rounded-xl bg-slate-900 px-4 py-2.5 text-center font-bold text-white sm:hidden">{% trans "Sign In" %}</a>
       {% endif %}
     </div>
   </nav>
+  {% endwith %}
 
     {% block content %}{% endblock %}
 
@@ -218,6 +239,17 @@
 
     <script src="{% static 'home.js' %}"></script>
     <script>
+        (function () {
+            const toggle = document.getElementById('nav-toggle');
+            const menu = document.getElementById('mobile-menu');
+            if (!toggle || !menu) return;
+            toggle.addEventListener('click', () => {
+                const open = !menu.classList.toggle('hidden');
+                toggle.setAttribute('aria-expanded', open);
+                toggle.firstElementChild.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            });
+        })();
+
         function toggleDropdown() {
             document.getElementById('user-dropdown').classList.toggle('hidden');
         }

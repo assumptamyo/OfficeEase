@@ -25,11 +25,11 @@
 }
 
 .animate-typing {
-  display: inline-block;
-  /* overflow: hidden; */
-  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  /* white-space: nowrap; */
   border-right: 3px solid transparent;
-  max-width: 0;
+  width: 0;
 }
 
 /* Fast, synchronized typing */

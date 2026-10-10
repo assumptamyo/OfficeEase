@@ -42,3 +42,22 @@ class LoginForm(forms.Form):
     # Accept either username or email in the same field named "username" in template
     username = forms.CharField(required=True)
     password = forms.CharField(widget=forms.PasswordInput, required=True)
+
+
+class ProfileForm(forms.Form):
+    first_name = forms.CharField(max_length=150, required=True)
+    last_name = forms.CharField(max_length=150, required=True)
+    email = forms.EmailField(required=True)
+    bio = forms.CharField(max_length=500, required=False, widget=forms.Textarea)
+
+    def __init__(self, *args, user, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if email.lower() == (self.user.email or '').lower():
+            return email
+        if User.objects.filter(email__iexact=email).exclude(pk=self.user.pk).exists():
+            raise forms.ValidationError('An account with this email already exists.')
+        return email

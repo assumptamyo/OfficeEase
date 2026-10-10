@@ -1,0 +1,90 @@
+<article class="lesson">
+  <header class="lesson-head">
+    <span class="lesson-no">Leçon 5.1</span>
+    <p class="lesson-lead">Envoyer la même lettre à deux cents personnes, chacune avec son propre nom et adresse, ne devrait pas signifier taper deux cents lettres. Le <strong>Publipostage</strong> combine un document avec une liste de données pour produire une copie personnalisée pour chaque personne figurant sur la liste.</p>
+  </header>
+
+  <section class="lesson-box">
+    <h3>Objectifs d'apprentissage</h3>
+    <p>À la fin de cette leçon, vous serez capable de :</p>
+    <ul>
+      <li>décrire les trois composants d'un publipostage ;</li>
+      <li>connecter un document principal à une source de données et insérer des champs de fusion ;</li>
+      <li>prévisualisez, filtrez et effectuez une fusion avec des documents, une imprimante ou un courrier électronique ;</li>
+      <li>utiliser une règle pour varier le texte en fonction des données.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Les trois composantes</h3>
+    <dl class="lesson-terms">
+      <div><dt>Document principal</dt><dd>La lettre, l'e-mail, l'étiquette ou le certificat contenant le texte qui est le même pour tout le monde.</dd></div>
+      <div><dt>Source de données</dt><dd>La liste des destinataires : généralement une feuille de calcul Excel, mais aussi une liste de contacts Outlook, un tableau Access ou une liste saisie en Word. Chaque <strong>ligne</strong> représente une personne (un <em>enregistrement</em>) et chaque <strong>colonne</strong> représente une information (un <em>champ</em>).</dd></div>
+      <div><dt>Fusionner les champs</dt><dd>Espaces réservés dans le document principal, affichés entre chevrons tels que « Prénom ». Lors de la fusion, chacun est remplacé par la valeur de cette personne.</dd></div>
+    </dl>
+    <aside class="lesson-note is-tip"><strong>Astuce</strong>Préparez soigneusement la liste Excel avant de commencer. Placez les en-têtes de colonnes dans la ligne 1, utilisez des noms courts sans espaces (Prénom, Société, Ville), ne laissez aucune ligne vide et conservez un type d'information par colonne.</aside>
+    <!--figure:merge-->
+  </section>
+
+  <section class="lesson-part">
+    <h3>Le workflow de publipostage</h3>
+    <p>Toutes les commandes se trouvent dans l'onglet <strong>Mailings</strong>, disposées de gauche à droite dans l'ordre dans lequel vous les utilisez.</p>
+    <ol class="lesson-steps">
+      <li><strong>Choisissez le type de document.</strong> <span class="lesson-path">Démarrer le publipostage</span> > Lettres, messages électroniques, enveloppes, étiquettes ou répertoire.</li>
+      <li><strong>Connectez les données.</strong> <span class="lesson-path">Sélectionnez Destinataires > Utiliser une liste existante</span>, puis accédez au fichier Excel et choisissez la feuille de calcul.</li>
+      <li><strong>Affiner la liste.</strong> <span class="lesson-path">Modifier la liste des destinataires</span> vous permet de décocher des individus, de trier la liste ou de la filtrer, par exemple sur une ville.</li>
+      <li><strong>Insérez les champs.</strong> Cliquez à l'endroit où chaque valeur appartient et choisissez-la dans <span class="lesson-path">Insérer un champ de fusion</span>. Tapez vous-même les espaces et la ponctuation entre les champs.</li>
+      <li><strong>Aperçu.</strong> <span class="lesson-path">Aperçu des résultats</span> remplace les espaces réservés par des données réelles. Utilisez les flèches pour parcourir les enregistrements et vérifier la mise en page avec les noms longs et courts.</li>
+      <li><strong>Terminer.</strong> <span class="lesson-path">Terminer et fusionner</span> et choisissez la sortie.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Choisir la sortie</h3>
+    <div class="lesson-table-wrap">
+      <table class="lesson-table">
+        <thead><tr><th>Option Terminer et fusionner</th><th>Résultat</th><th>Utilisez-le quand</th></tr></thead>
+        <tbody>
+          <tr><td>Modifier des documents individuels</td><td>Un nouveau document contenant chaque copie personnalisée, une par page</td><td>Vous souhaitez vérifier, ajuster ou enregistrer les résultats au format PDF</td></tr>
+          <tr><td>Imprimer des documents</td><td>Les copies sont envoyées directement à l'imprimeur</td><td>L'aperçu est correct et des copies papier sont nécessaires</td></tr>
+          <tr><td>Envoyer des e-mails</td><td>Un e-mail par destinataire, envoyé via Outlook</td><td>La liste contient une colonne d'adresse e-mail</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <aside class="lesson-note is-warn"><strong>Important</strong>Les e-mails envoyés par fusion partent immédiatement et ne peuvent pas être rappelés. Fusionnez toujours pour <em>Modifier les documents individuels</em> en premier, ou envoyez-vous un test, avant d'envoyer une vraie liste par e-mail.</aside>
+  </section>
+
+  <section class="lesson-part">
+    <h3>Champs et règles composites</h3>
+    <p>Le <strong>Bloc d'adresse</strong> et la <strong>Ligne de salutation</strong> rassemblent plusieurs champs dans une adresse ou une formule de salutation correctement formatée. Si le résultat est erroné, utilisez les <span class="lesson-path">Match Fields</span> pour indiquer à Word laquelle de vos colonnes contient le nom de famille, la ville, etc.</p>
+    <p>Les <strong>règles</strong> font dépendre le texte des données. Le plus utile est <em>If…Then…Else</em> : par exemple, si le champ <em>Statut</em> est égal à <em>Membre</em>, insérez « Votre réduction membre est de 20 % » ; sinon, insérez « Inscrivez-vous aujourd'hui pour bénéficier d'une réduction ».</p>
+  </section>
+
+  <section class="lesson-example">
+    <h4>Exemple concret : certificats d'événement</h4>
+    <ol class="lesson-steps">
+      <li>Ouvrez la conception du certificat et choisissez <span class="lesson-path">Démarrer le publipostage > Lettres</span>.</li>
+      <li>Connectez-le à <em>Attendees.xlsx</em> avec <em>Utiliser une liste existante</em>.</li>
+      <li>Cliquez sur la ligne du nom et insérez les champs « Prénom » et « Nom » en espaçant un espace ; insérer « Cours » sur la ligne ci-dessous.</li>
+      <li>Prévisualisez les résultats et parcourez plusieurs enregistrements pour vérifier que les noms longs correspondent.</li>
+      <li>Choisissez <span class="lesson-path">Terminer et fusionner > Modifier des documents individuels</span>, puis enregistrez le résultat au format PDF.</li>
+    </ol>
+  </section>
+
+  <section class="lesson-box">
+    <h3>Points clés à retenir</h3>
+    <ul>
+      <li>Un publipostage joint un document principal à une source de données au moyen de champs de fusion.</li>
+      <li>Dans la source de données, les lignes sont des enregistrements et les colonnes sont des champs.</li>
+      <li>L'onglet Mailings est disposé dans l'ordre du flux de travail : démarrer, sélectionner, insérer, prévisualiser, terminer.</li>
+      <li>Prévisualisez toujours et fusionnez avec un document avant de l'imprimer ou de l'envoyer par courrier électronique.</li>
+    </ul>
+  </section>
+
+  <section class="lesson-check">
+    <h3>Vérifiez votre compréhension</h3>
+    <details><summary>Dans une liste de destinataires Excel, que représente une ligne et que représente une colonne ?</summary><p>Une ligne est un enregistrement, c'est-à-dire un destinataire. Une colonne est un champ, comme le prénom ou la ville.</p></details>
+    <details><summary>Vos lettres fusionnées affichent « Cher « Prénom » » au lieu des vrais noms. Quelle étape a été manquée ?</summary><p>La fusion n'a pas été achevée. Utilisez Aperçu des résultats pour vérifier les données, puis Terminer et fusionner pour produire les copies personnalisées.</p></details>
+    <details><summary>Quelle option Terminer et fusionner est la plus sûre pour une première tentative, et pourquoi ?</summary><p>Modifiez des documents individuels, car cela produit un document que vous pouvez inspecter et corriger avant que quoi que ce soit ne soit imprimé ou envoyé.</p></details>
+  </section>
+</article>
